@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">晴天公交(珠海)</string>
+    <string name="title_home">实时公交</string>
+    <string name="discovery">发现</string>
+    <string name="title_notifications">设置</string>
+
+    <string name="cancel">取消</string>
+    <string name="setting">设置</string>
+    <string name="about">关于</string>
+    <string name="feedback">意见反馈</string>
+    <string name="update">版本更新</string>
+    <string name="clear_cache">缓存清理</string>
+    <string name="confirm">确定</string>
+    <string name="delete">删除</string>
+    <string name="loading">加载中…</string>
+
+    <string name="execute_success">操作成功</string>
+    <string name="feedback_success">吐槽成功</string>
+    <string name="feedback_success_content">您的吐槽很到位，我们一定会好好考虑！</string>
+    <string name="clear_cache_content">您的数据将会在地球上彻底消失</string>
+    <string name="delete_history">删除历史</string>
+    <string name="search_hint">搜索</string>
+    <string name="feedback_hint">您想跟我们说…</string>
+    <string name="search_bus_hint"> 请输入路线，如：k1</string>
+    <string name="slogan">愿每一次公交都与你同行</string>
+    <string name="error_msg">服务器有点抽风</string>
+    <string name="auto_refresh_switch_on">打开自动刷新</string>
+    <string name="already_switch_on_auto_refresh">已为您打开自动刷新</string>
+    <string name="auto_refresh_switch_off">关闭自动刷新</string>
+    <string name="already_switch_off_auto_refresh">已为您关闭自动刷新</string>
+    <string name="contact_me">联系作者：huzhenjie.dev@gmail.com</string>
+</resources>
