@@ -1,14 +1,14 @@
 package com.scrat.zhuhaibus.data;
 
+import android.content.Context;
+
+import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.data.net.CoreService;
 import com.scrat.zhuhaibus.data.net.XinheApiService;
+import com.scrat.zhuhaibus.framework.util.Utils;
 
-import java.io.IOException;
-
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -28,8 +28,17 @@ public class DataRepository {
 
     private XinheApiService xinheApiService;
     private CoreService coreService;
+    private boolean init;
 
     private DataRepository() {
+    }
+
+    public synchronized void init(Context ctx) {
+        if (init) {
+            return;
+        }
+        init = true;
+
         Retrofit xinheRetrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -38,17 +47,14 @@ public class DataRepository {
         xinheApiService = xinheRetrofit.create(XinheApiService.class);
 
         OkHttpClient.Builder client = new OkHttpClient().newBuilder()
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        Request req = chain.request().newBuilder()
-                                .addHeader("ch", "ch")
-                                .addHeader("vc", "0")
-                                .addHeader("vn", "vn")
-                                .addHeader("app", "app")
-                                .build();
-                        return chain.proceed(req);
-                    }
+                .addInterceptor(chain -> {
+                    Request req = chain.request().newBuilder()
+                            .addHeader("ch", Utils.getChannelName(ctx))
+                            .addHeader("vc", String.valueOf(Utils.getVersionCode(ctx)))
+                            .addHeader("vn", Utils.getVersionName(ctx))
+                            .addHeader("app", ctx.getString(R.string.app_name))
+                            .build();
+                    return chain.proceed(req);
                 });
         Retrofit coreRetrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
@@ -57,6 +63,10 @@ public class DataRepository {
                 .client(client.build())
                 .build();
         coreService = coreRetrofit.create(CoreService.class);
+    }
+
+    public void release() {
+        init = false;
     }
 
     public XinheApiService getXinheApiService() {

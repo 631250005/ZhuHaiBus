@@ -34,7 +34,12 @@ public class AboutActivity extends BaseActivity {
         try {
             Intent data = new Intent(Intent.ACTION_SENDTO);
             data.setData(Uri.parse("mailto:huzhenjie.dev@gmail.com"));
-            data.putExtra(Intent.EXTRA_SUBJECT, "[珠海公交][" + Utils.getVersionName(this) + "][" + Utils.getVersionCode(this) + "]");
+            StringBuilder subject = new StringBuilder()
+                    .append('[').append(getString(R.string.app_name)).append(']')
+                    .append('[').append(Utils.getVersionName(this)).append(']')
+                    .append('[').append(Utils.getVersionCode(this)).append(']')
+                    .append('[').append(Utils.getChannelName(this)).append(']');
+            data.putExtra(Intent.EXTRA_SUBJECT, subject.toString());
             data.putExtra(Intent.EXTRA_TEXT, getString(R.string.feedback_hint));
             startActivity(data);
         } catch (Exception e) {

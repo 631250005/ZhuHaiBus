@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -100,6 +101,27 @@ public class Utils {
             e.printStackTrace();
         }
         return 1;
+    }
+
+    public static String getChannelName(Context ctx) {
+        String channelName = "";
+        if (ctx == null) {
+            return channelName;
+        }
+        try {
+            PackageManager packageManager = ctx.getPackageManager();
+            if (packageManager != null) {
+                ApplicationInfo applicationInfo = packageManager.getApplicationInfo(ctx.getPackageName(), PackageManager.GET_META_DATA);
+                if (applicationInfo != null) {
+                    if (applicationInfo.metaData != null) {
+                        channelName = applicationInfo.metaData.getString("UMENG_CHANNEL");
+                    }
+                }
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return channelName;
     }
 
     public static boolean checkPermission(
