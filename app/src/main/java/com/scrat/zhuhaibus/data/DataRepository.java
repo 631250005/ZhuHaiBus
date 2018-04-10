@@ -52,7 +52,7 @@ public class DataRepository {
                             .addHeader("ch", Utils.getChannelName(ctx))
                             .addHeader("vc", String.valueOf(Utils.getVersionCode(ctx)))
                             .addHeader("vn", Utils.getVersionName(ctx))
-                            .addHeader("app", ctx.getString(R.string.app_name))
+                            .addHeader("app", "zhuhaibus")
                             .build();
                     return chain.proceed(req);
                 });
