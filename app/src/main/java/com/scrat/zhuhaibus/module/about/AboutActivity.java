@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.scrat.zhuhaibus.R;
+import com.scrat.zhuhaibus.databinding.ActivityAboutBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.framework.util.Utils;
@@ -27,7 +28,9 @@ public class AboutActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DataBindingUtil.setContentView(this, R.layout.activity_about);
+        ActivityAboutBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_about);
+        String ver = Utils.getVersionName(this) + "-" + Utils.getChannelName(this);
+        binding.ver.setText(ver);
     }
 
     public void sendEmail(View view) {

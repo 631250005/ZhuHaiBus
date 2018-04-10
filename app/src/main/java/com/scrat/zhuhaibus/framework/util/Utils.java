@@ -20,6 +20,8 @@ import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
 import android.util.TypedValue;
 
+import com.scrat.zhuhaibus.BuildConfig;
+
 import java.io.File;
 import java.util.Calendar;
 
@@ -84,13 +86,17 @@ public class Utils {
     }
 
     public static String getVersionName(Context applicationContext) {
+        String versionName = "";
         try {
             String pkName = applicationContext.getPackageName();
-            return applicationContext.getPackageManager().getPackageInfo(pkName, 0).versionName;
+            versionName = applicationContext.getPackageManager().getPackageInfo(pkName, 0).versionName;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "";
+        if (BuildConfig.DEBUG) {
+            versionName += ".debug";
+        }
+        return versionName;
     }
 
     public static int getVersionCode(Context applicationContext) {
