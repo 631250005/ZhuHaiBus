@@ -54,6 +54,9 @@ public class NewsFragment extends BaseFragment implements NewsContract.View {
         binding.list.addOnScrollListener(loadMoreListener);
         new NewsPresenter(this);
         presenter.loadData(true);
+
+        binding.title.setOnClickListener(v -> layoutManager.scrollToPosition(0));
+
         return binding.getRoot();
     }
 

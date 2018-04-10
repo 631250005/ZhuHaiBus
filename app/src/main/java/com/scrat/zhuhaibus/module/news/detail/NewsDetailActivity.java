@@ -36,6 +36,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailContra
         String newsId = getIntent().getStringExtra(ID);
         new NewsDetailPresenter(this, newsId);
         presenter.loadData();
+        binding.title.setOnClickListener(v -> binding.scrollView.scrollTo(0, 0));
     }
 
     @Override
