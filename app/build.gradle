@@ -19,7 +19,7 @@ def getVersionName = { ->
     try {
         def stdout = new ByteArrayOutputStream()
         exec {
-            commandLine 'git', 'describe', '--tags', '--dirty'
+            commandLine 'git', 'describe', '--tags'//, '--dirty'
             standardOutput = stdout
         }
         return stdout.toString().trim()
@@ -95,9 +95,9 @@ android {
             dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "xiaomi"]
         }
-        badidu {
+        baidu {
             dimension 'internal'
-            manifestPlaceholders = [CHANNEL_NAME: "badidu"]
+            manifestPlaceholders = [CHANNEL_NAME: "baidu"]
         }
         _360 {
             dimension 'internal'
@@ -112,6 +112,20 @@ android {
             manifestPlaceholders = [CHANNEL_NAME: "huawei"]
         }
     }
+
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all { output ->
+//            def file = output.outputFile
+//            def stdout = new ByteArrayOutputStream()
+//            exec {
+//                commandLine 'git', 'describe', '--abbrev=0', '--tags'
+//                standardOutput = stdout
+//            }
+//
+//            def vn = stdout.toString().trim()
+//            outputFileName = new File("${project.projectDir}/../outputs/apks/" + variant.name, "${project.projectDir}/../outputs/apks/" + file.name.replace(".apk", "-" + vn + ".apk"))
+//        }
+//    }
 
     dataBinding {
         enabled = true
