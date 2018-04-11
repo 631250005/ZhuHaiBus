@@ -48,7 +48,7 @@ android {
         versionName getVersionName() + "." + getVersionCode()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary= true
-        manifestPlaceholders = [CHANNEL_NAME: "default", UMENG_APPKEY: UMENG_APPKEY]
+        manifestPlaceholders = [CHANNEL_NAME: "default", UMENG_APPKEY: UMENG_APPKEY, APP_NAME: "晴天公交(珠海)"]
     }
 
     signingConfigs {
@@ -93,7 +93,7 @@ android {
         }
         xiaomi {
             dimension 'internal'
-            manifestPlaceholders = [CHANNEL_NAME: "xiaomi"]
+            manifestPlaceholders = [CHANNEL_NAME: "xiaomi", APP_NAME: "珠海公交"]
         }
         baidu {
             dimension 'internal'
