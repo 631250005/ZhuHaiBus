@@ -109,6 +109,7 @@
                     android:id="@+id/news_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:lineSpacingExtra="5dp"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:paddingRight="@dimen/activity_horizontal_margin"
                     android:textColor="@color/blue_gray_900"
