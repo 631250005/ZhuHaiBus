@@ -85,7 +85,7 @@ android {
     productFlavors {
         gp {
             dimension 'internal'
-            manifestPlaceholders = [CHANNEL_NAME: "gp"]
+            manifestPlaceholders = [CHANNEL_NAME: "gp", APP_NAME: "珠海公交"]
         }
         oppo {
             dimension 'internal'
@@ -95,10 +95,10 @@ android {
             dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "xiaomi", APP_NAME: "珠海公交"]
         }
-        baidu {
-            dimension 'internal'
-            manifestPlaceholders = [CHANNEL_NAME: "baidu"]
-        }
+//        baidu {
+//            dimension 'internal'
+//            manifestPlaceholders = [CHANNEL_NAME: "baidu"]
+//        }
         _360 {
             dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "_360"]
@@ -107,10 +107,10 @@ android {
 //            dimension 'internal'
 //            manifestPlaceholders = [CHANNEL_NAME: "yingyongbao"]
 //        }
-        huawei {
-            dimension 'internal'
-            manifestPlaceholders = [CHANNEL_NAME: "huawei"]
-        }
+//        huawei {
+//            dimension 'internal'
+//            manifestPlaceholders = [CHANNEL_NAME: "huawei"]
+//        }
     }
 
 //    android.applicationVariants.all { variant ->
