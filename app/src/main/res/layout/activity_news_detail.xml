@@ -107,13 +107,7 @@
 
                 <com.scrat.zhuhaibus.framework.richtext.RichTextView
                     android:id="@+id/news_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="5dp"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:textColor="@color/blue_gray_900"
-                    android:textSize="16sp" />
+                    style="@style/newsDetailTextView" />
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
