@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 
 import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.data.modle.News;
@@ -60,8 +59,5 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailContra
         binding.newsTitle.setText(news.getTitle());
         glideRequests.load(news.getCover()).fitCenter().into(binding.newsCover);
         binding.newsDetail.fromHtml(news.getDetail());
-        if (!TextUtils.isEmpty(news.getPt())) {
-            binding.from.setText(news.getPt());
-        }
     }
 }
