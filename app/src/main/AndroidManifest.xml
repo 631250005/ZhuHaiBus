@@ -5,18 +5,18 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!--Umeng-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!--<uses-permission android:name="android.permission.INTERNET"/>-->
 
     <application
         android:name=".App"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="${APP_NAME}"
         android:supportsRtl="true"
-        android:hardwareAccelerated="false"
         android:theme="@style/NoActionBarTheme">
         <activity
             android:name=".module.splash.SplashActivity"

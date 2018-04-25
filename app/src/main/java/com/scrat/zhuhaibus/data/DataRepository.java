@@ -2,7 +2,6 @@ package com.scrat.zhuhaibus.data;
 
 import android.content.Context;
 
-import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.data.net.CoreService;
 import com.scrat.zhuhaibus.data.net.XinheApiService;
 import com.scrat.zhuhaibus.framework.util.Utils;
@@ -18,6 +17,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class DataRepository {
+    private static final String SHARE_URL = "https://xd.scrats.cn/u/zhbus/app.html";
+
     private static class SingletonHolder {
         private static DataRepository instance = new DataRepository();
     }
@@ -75,5 +76,9 @@ public class DataRepository {
 
     public CoreService getCoreService() {
         return coreService;
+    }
+
+    public String getShareUrl() {
+        return String.format("%s?_=%s", SHARE_URL, System.currentTimeMillis());
     }
 }

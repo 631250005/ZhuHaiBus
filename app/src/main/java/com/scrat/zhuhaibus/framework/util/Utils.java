@@ -266,4 +266,16 @@ public class Utils {
             L.e(e);
         }
     }
+
+    public static void openOnSysBrowser(Activity activity, String url) {
+        try {
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            Uri uri = Uri.parse(url);
+            intent.setData(uri);
+            activity.startActivity(intent);
+        } catch (Exception e) {
+            L.e(e);
+        }
+    }
 }

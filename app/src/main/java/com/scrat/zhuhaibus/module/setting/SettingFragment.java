@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.scrat.zhuhaibus.R;
+import com.scrat.zhuhaibus.data.DataRepository;
 import com.scrat.zhuhaibus.databinding.FragmentSettingBinding;
 import com.scrat.zhuhaibus.framework.common.BaseFragment;
+import com.scrat.zhuhaibus.framework.util.Utils;
 import com.scrat.zhuhaibus.framework.view.IosDialog;
 import com.scrat.zhuhaibus.module.about.AboutActivity;
 import com.scrat.zhuhaibus.module.feedback.FeedbackActivity;
@@ -38,13 +40,12 @@ public class SettingFragment extends BaseFragment implements SettingContract.Vie
         binding.setting.setOnClickListener(v -> updateHelper.checkUpdate(getActivity(), true, true));
         binding.about.setOnClickListener(v -> AboutActivity.show(getContext()));
         binding.feedback.setOnClickListener(v -> FeedbackActivity.show(getContext()));
+        binding.shareApp.setOnClickListener(v -> Utils.openOnSysBrowser(getActivity(), DataRepository.getInstance().getShareUrl()));
         cacheDialog = new IosDialog(getContext())
                 .setTitle(R.string.clear_cache)
                 .setContent(R.string.clear_cache_content)
                 .setNegative(R.string.cancel)
-                .setPositive(R.string.delete, v -> {
-                    presenter.clearCache();
-                });
+                .setPositive(R.string.delete, v -> presenter.clearCache());
         new SettingPresenter(getApplicationContext(),this);
         binding.cleanCache.setOnClickListener(v -> {
             cacheDialog.show(binding.about);
