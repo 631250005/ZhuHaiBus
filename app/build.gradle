@@ -155,4 +155,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
 
     implementation 'com.umeng.analytics:analytics:latest.integration'
+    implementation 'com.google.android.gms:play-services-ads:11.2.0'
 }

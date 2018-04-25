@@ -8,19 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.scrat.zhuhaibus.App;
 import com.scrat.zhuhaibus.R;
+import com.scrat.zhuhaibus.data.modle.BusLine;
 import com.scrat.zhuhaibus.databinding.FragmentMainBinding;
 import com.scrat.zhuhaibus.framework.common.BaseFragment;
-import com.scrat.zhuhaibus.framework.common.BaseOnItemClickListener;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewAdapter;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewHolder;
 import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
-import com.scrat.zhuhaibus.data.modle.BusLine;
+import com.scrat.zhuhaibus.framework.util.L;
 import com.scrat.zhuhaibus.framework.view.IosDialog;
-import com.scrat.zhuhaibus.framework.view.SelectorPopupWindow;
 import com.scrat.zhuhaibus.module.bus.detail.BusDetailActivity;
 import com.scrat.zhuhaibus.module.bus.search.SearchActivity;
-import com.scrat.zhuhaibus.module.feedback.FeedbackActivity;
 
 import java.util.List;
 
@@ -82,7 +83,22 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
 
         new BusListPresenter(getApplicationContext(), this);
         presenter.loadHistory();
+        initAd();
         return binding.getRoot();
+    }
+
+    private void initAd() {
+        binding.list.post(() -> {
+            try {
+                MobileAds.initialize(getContext(), App.AD_APP_ID);
+                AdRequest adRequest = new AdRequest
+                        .Builder()
+                        .build();
+                binding.adView.loadAd(adRequest);
+            } catch (Exception e) {
+                L.e(e);
+            }
+        });
     }
 
     public void refreshHistory() {

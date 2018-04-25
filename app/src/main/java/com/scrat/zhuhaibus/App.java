@@ -11,6 +11,10 @@ import com.umeng.analytics.MobclickAgent;
  */
 
 public class App extends Application {
+    //    应用 ID：ca-app-pub-7011153870356750~2650984540
+    //    广告单元 ID：ca-app-pub-7011153870356750/5013138594
+    public static final String AD_APP_ID = "ca-app-pub-7011153870356750~2650984540";
+
     @Override
     public void onCreate() {
         super.onCreate();
