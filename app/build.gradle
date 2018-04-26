@@ -97,7 +97,7 @@ android {
         }
         h5 {
             dimension 'internal'
-            manifestPlaceholders = [CHANNEL_NAME: "h5"]
+            manifestPlaceholders = [CHANNEL_NAME: "h5", APP_NAME: "珠海公交"]
         }
         _360 {
             dimension 'internal'
