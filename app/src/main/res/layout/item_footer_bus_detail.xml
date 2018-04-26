@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginLeft="42dp"
+            android:background="@drawable/bg_circle_primary_dark"
+            android:gravity="center"
+            android:text="@string/end"
+            android:textColor="@android:color/white" />
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ad_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="ca-app-pub-7011153870356750/5013138594" />
+
+    </LinearLayout>
+</layout>

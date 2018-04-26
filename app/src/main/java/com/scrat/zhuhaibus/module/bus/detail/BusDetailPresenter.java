@@ -6,6 +6,7 @@ import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.data.DataRepository;
 import com.scrat.zhuhaibus.data.dao.BusStopDao;
 import com.scrat.zhuhaibus.data.modle.BaseXinHeRes;
+import com.scrat.zhuhaibus.data.modle.BusLine;
 import com.scrat.zhuhaibus.data.modle.BusStation;
 import com.scrat.zhuhaibus.data.modle.BusStop;
 import com.scrat.zhuhaibus.framework.util.L;
@@ -34,15 +35,12 @@ public class BusDetailPresenter implements BusDetailContract.BusDetailPresenter 
     public BusDetailPresenter(
             Context context,
             BusDetailContract.BusDetailView view,
-            String busId,
-            String lineName,
-            String fromStation,
-            String toStation) {
+            BusLine line) {
         busStopDao = new BusStopDao(context);
-        this.busId = busId;
-        this.lineName = lineName;
-        this.fromStation = fromStation;
-        this.toStation = toStation;
+        this.busId = line.getId();
+        this.lineName = line.getName();
+        this.fromStation = line.getFromStation();
+        this.toStation = line.getToStation();
         this.view = view;
         view.setPresenter(this);
     }

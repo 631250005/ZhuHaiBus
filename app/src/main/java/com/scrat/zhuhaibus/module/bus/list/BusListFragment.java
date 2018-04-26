@@ -62,12 +62,7 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
             @Override
             public void onItemClick(BusLine line) {
                 presenter.updateHistoryPos(line.getId());
-                BusDetailActivity.show(
-                        getContext(),
-                        line.getId(),
-                        line.getName(),
-                        line.getFromStation(),
-                        line.getToStation());
+                BusDetailActivity.show(getContext(), line);
             }
 
             @Override
@@ -127,12 +122,7 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
             case REQUEST_CODE_SEARCH:
                 presenter.loadHistory();
                 BusLine line = SearchActivity.parseData(data);
-                BusDetailActivity.show(
-                        getContext(),
-                        line.getId(),
-                        line.getName(),
-                        line.getFromStation(),
-                        line.getToStation());
+                BusDetailActivity.show(getContext(), line);
                 break;
             default:
                 break;

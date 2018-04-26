@@ -6,26 +6,32 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.scrat.zhuhaibus.App;
 import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.data.local.Preferences;
+import com.scrat.zhuhaibus.data.modle.BusLine;
 import com.scrat.zhuhaibus.data.modle.BusStation;
 import com.scrat.zhuhaibus.data.modle.BusStop;
 import com.scrat.zhuhaibus.databinding.ActivityBusDetailBinding;
+import com.scrat.zhuhaibus.databinding.ItemFooterBusDetailBinding;
+import com.scrat.zhuhaibus.databinding.ItemHeaderBusDetailBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewAdapter;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewHolder;
 import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
+import com.scrat.zhuhaibus.framework.util.L;
 import com.scrat.zhuhaibus.framework.view.SelectorPopupWindow;
 import com.scrat.zhuhaibus.module.feedback.FeedbackActivity;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -33,18 +39,11 @@ import java.util.TreeMap;
  */
 @ViewAnnotation(modelName = "bus_detail")
 public class BusDetailActivity extends BaseActivity implements BusDetailContract.BusDetailView {
-    private static final String ID = "id";
-    private static final String NAME = "name";
-    private static final String FROM = "from";
-    private static final String TO = "to";
+    private static final String DATA = "data";
 
-    public static void show(
-            Context context, String busId, String lineName, String fromStation, String toStation) {
+    public static void show(Context context, BusLine line) {
         Intent i = new Intent(context, BusDetailActivity.class);
-        i.putExtra(ID, busId);
-        i.putExtra(NAME, lineName);
-        i.putExtra(FROM, fromStation);
-        i.putExtra(TO, toStation);
+        i.putExtra(DATA, line);
         context.startActivity(i);
     }
 
@@ -61,16 +60,20 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
         binding = DataBindingUtil.setContentView(this, R.layout.activity_bus_detail);
 
         adapter = new Adapter();
+        LayoutInflater inflater = LayoutInflater.from(this);
         binding.list.setLayoutManager(new LinearLayoutManager(this));
         binding.list.setHasFixedSize(true);
         binding.list.setAdapter(adapter);
+        ItemHeaderBusDetailBinding headerBinding = ItemHeaderBusDetailBinding.inflate(inflater, binding.list, false);
+        adapter.setHeader(headerBinding.getRoot());
+        ItemFooterBusDetailBinding footerBinding = ItemFooterBusDetailBinding.inflate(inflater, binding.list, false);
+        adapter.setFooter(footerBinding.getRoot());
 
-        String busId = getIntent().getStringExtra(ID);
-        String lineName = getIntent().getStringExtra(NAME);
-        String fromStation = getIntent().getStringExtra(FROM);
-        String toStation = getIntent().getStringExtra(TO);
-        new BusDetailPresenter(getApplicationContext(), this, busId, lineName, fromStation, toStation);
-        binding.title.setText(String.format("%s 开往 %s", lineName, toStation));
+        BusLine line = (BusLine) getIntent().getSerializableExtra(DATA);
+        String tips = "票价：" + line.getPrice() + " 元，营运时间：" + line.getBeginTime() + " ～ " + line.getEndTime();
+        headerBinding.tip.setText(tips);
+        new BusDetailPresenter(getApplicationContext(), this, line);
+        binding.title.setText(String.format("%s 开往 %s", line.getName(), line.getToStation()));
 
         binding.srl.setOnRefreshListener(() -> {
             presenter.refreshStation();
@@ -80,6 +83,22 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
 
         presenter.initBusStop();
         autoRefresh();
+
+        initAd(footerBinding);
+    }
+
+    private void initAd(ItemFooterBusDetailBinding footerBinding) {
+        binding.list.post(() -> {
+            try {
+                MobileAds.initialize(getApplicationContext(), App.AD_APP_ID);
+                AdRequest adRequest = new AdRequest
+                        .Builder()
+                        .build();
+                footerBinding.adView.loadAd(adRequest);
+            } catch (Exception e) {
+                L.e(e);
+            }
+        });
     }
 
     @Override

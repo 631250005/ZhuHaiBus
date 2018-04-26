@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_circle_primary_dark"
+            android:gravity="center"
+            android:text="@string/begin"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tip"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_bus_detail_tip"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingLeft="8dp"
+            android:singleLine="true"
+            android:text="@string/loading"
+            android:textColor="@color/blue_gray_400" />
+
+    </LinearLayout>
+</layout>

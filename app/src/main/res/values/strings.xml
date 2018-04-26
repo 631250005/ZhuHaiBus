@@ -13,6 +13,8 @@
     <string name="confirm">确定</string>
     <string name="delete">删除</string>
     <string name="loading">加载中…</string>
+    <string name="begin">起</string>
+    <string name="end">终</string>
     <string name="share_app">分享给好友</string>
     <string name="scan_and_download">扫码下载</string>
 
