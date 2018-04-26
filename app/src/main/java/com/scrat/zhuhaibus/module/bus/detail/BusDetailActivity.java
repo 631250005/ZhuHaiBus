@@ -88,9 +88,10 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
     }
 
     private void initAd(ItemFooterBusDetailBinding footerBinding) {
+        Context ctx = getApplicationContext();
         binding.list.post(() -> {
             try {
-                MobileAds.initialize(getApplicationContext(), App.AD_APP_ID);
+                MobileAds.initialize(ctx, App.AD_APP_ID);
                 AdRequest adRequest = new AdRequest
                         .Builder()
                         .build();

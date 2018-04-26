@@ -1,5 +1,6 @@
 package com.scrat.zhuhaibus.module.bus.list;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -83,9 +84,10 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
     }
 
     private void initAd() {
+        Context ctx = getApplicationContext();
         binding.list.post(() -> {
             try {
-                MobileAds.initialize(getContext(), App.AD_APP_ID);
+                MobileAds.initialize(ctx, App.AD_APP_ID);
                 AdRequest adRequest = new AdRequest
                         .Builder()
                         .build();
