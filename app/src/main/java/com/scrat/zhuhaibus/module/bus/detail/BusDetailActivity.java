@@ -169,7 +169,7 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
 
     public void more(View view) {
         Map<String, View.OnClickListener> items = new TreeMap<>();
-        items.put(getString(R.string.feedback), v -> FeedbackActivity.show(this));
+        items.put(getString(R.string.reverse_bus_line), v -> presenter.reverse());
         if (Preferences.getInstance().isAutoRefresh()) {
             items.put(getString(R.string.auto_refresh_switch_off), v -> {
                 Preferences.getInstance().setAutoRefresh(false);
@@ -184,12 +184,13 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
                 showMessage(R.string.already_switch_on_auto_refresh);
             });
         }
+        items.put(getString(R.string.feedback), v -> FeedbackActivity.show(this));
 
         selector.refreshItems(items).show(view);
     }
 
-    public void refresh(View view) {
-        presenter.initBusStop();
+    public void reverse(View view) {
+        presenter.reverse();
     }
 
     private void autoRefresh() {

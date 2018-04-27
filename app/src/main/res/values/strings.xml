@@ -17,6 +17,7 @@
     <string name="end">终</string>
     <string name="share_app">分享给好友</string>
     <string name="scan_and_download">扫码下载</string>
+    <string name="reverse_bus_line">切换方向</string>
 
     <string name="execute_success">操作成功</string>
     <string name="feedback_success">反馈成功</string>

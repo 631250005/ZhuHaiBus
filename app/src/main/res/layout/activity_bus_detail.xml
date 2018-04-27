@@ -47,8 +47,8 @@
                 android:layout_marginRight="40dp"
                 android:background="@null"
                 android:contentDescription="@null"
-                android:onClick="refresh"
-                app:srcCompat="@drawable/ic_refresh_white_24dp" />
+                android:onClick="reverse"
+                app:srcCompat="@drawable/ic_order_white_24dp" />
 
         </RelativeLayout>
 

@@ -17,6 +17,8 @@ public interface BusDetailContract {
         void loadBusStop();
 
         void refreshStation();
+
+        void reverse();
     }
 
     interface BusDetailView {

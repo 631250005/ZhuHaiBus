@@ -37,11 +37,11 @@ public class BusDetailPresenter implements BusDetailContract.BusDetailPresenter 
         this.line = line;
         this.view = view;
         view.setPresenter(this);
-        view.showBusLine(line);
     }
 
     @Override
     public void initBusStop() {
+        view.showBusLine(line);
         List<BusStop> stops = busStopDao.getBusStopList(line.getId());
         if (!stops.isEmpty()) {
             view.showBusStop(stops);
@@ -125,4 +125,40 @@ public class BusDetailPresenter implements BusDetailContract.BusDetailPresenter 
                 });
     }
 
+    @Override
+    public void reverse() {
+        DataRepository.getInstance().getXinheApiService()
+                .getBusLine("GetLineListByLineName", line.getName(), System.currentTimeMillis())
+                .subscribeOn(Schedulers.newThread())//请求在新的线程中执行
+                .observeOn(AndroidSchedulers.mainThread())//最后在主线程中执行
+                .subscribe(new Subscriber<BaseXinHeRes<List<BusLine>>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                        view.showLoadBusStopError(R.string.error_msg);
+                    }
+
+                    @Override
+                    public void onNext(BaseXinHeRes<List<BusLine>> busLines) {
+                        L.d("%s", busLines.getFlag());
+                        if (busLines.getData() != null) {
+                            BusLine reverseLine = null;
+                            for (BusLine currLine : busLines.getData()) {
+                                if (line.getId().equals(currLine.getId())) {
+                                    continue;
+                                }
+                                line = currLine;
+                                initBusStop();
+                                return;
+                            }
+                        }
+
+                        view.showLoadBusStopError(R.string.error_msg);
+                    }
+                });
+    }
 }
