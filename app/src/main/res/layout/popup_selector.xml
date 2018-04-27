@@ -29,19 +29,19 @@
                 android:gravity="bottom"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="15dp"
-                    android:gravity="center_vertical"
-                    android:text="请选择"
-                    android:textColor="@color/blue_gray_900"
-                    android:textSize="20sp" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:text="请选择"-->
+                    <!--android:textColor="@color/blue_gray_900"-->
+                    <!--android:textSize="20sp" />-->
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@color/blue_gray_100" />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1px"-->
+                    <!--android:background="@color/blue_gray_100" />-->
 
                 <LinearLayout
                     android:id="@+id/content_list"
