@@ -15,12 +15,14 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
 import android.util.TypedValue;
 
 import com.scrat.zhuhaibus.BuildConfig;
+import com.scrat.zhuhaibus.R;
 
 import java.io.File;
 import java.util.Calendar;
@@ -269,13 +271,24 @@ public class Utils {
 
     public static void openOnSysBrowser(Activity activity, String url) {
         try {
-            Intent intent = new Intent();
-            intent.setAction("android.intent.action.VIEW");
             Uri uri = Uri.parse(url);
-            intent.setData(uri);
-            activity.startActivity(intent);
+            CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
+            intentBuilder.setToolbarColor(ContextCompat.getColor(activity, R.color.colorPrimary));
+            intentBuilder.setSecondaryToolbarColor(ContextCompat.getColor(activity, R.color.colorPrimaryDark));
+            intentBuilder.setShowTitle(true);
+            CustomTabsIntent customTabsIntent = intentBuilder.build();
+            customTabsIntent.launchUrl(activity, uri);
         } catch (Exception e) {
             L.e(e);
+            try {
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri uri = Uri.parse(url);
+                intent.setData(uri);
+                activity.startActivity(intent);
+            } catch (Exception e2) {
+                L.e(e2);
+            }
         }
     }
 }
