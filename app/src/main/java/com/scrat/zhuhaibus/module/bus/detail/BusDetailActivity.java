@@ -30,9 +30,9 @@ import com.scrat.zhuhaibus.framework.view.SelectorPopupWindow;
 import com.scrat.zhuhaibus.module.feedback.FeedbackActivity;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Created by scrat on 2018/3/25.
@@ -168,7 +168,7 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
     }
 
     public void more(View view) {
-        Map<String, View.OnClickListener> items = new TreeMap<>();
+        Map<String, View.OnClickListener> items = new LinkedHashMap<>();
         items.put(getString(R.string.reverse_bus_line), v -> presenter.reverse());
         if (Preferences.getInstance().isAutoRefresh()) {
             items.put(getString(R.string.auto_refresh_switch_off), v -> {
