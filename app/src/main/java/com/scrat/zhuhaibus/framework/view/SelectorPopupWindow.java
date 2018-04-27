@@ -39,6 +39,7 @@ public class SelectorPopupWindow extends PopupWindow {
 
     public SelectorPopupWindow refreshItems(Map<String, View.OnClickListener> itemMap) {
         binding.contentList.removeAllViews();
+        View lastLineView = null;
         for (Map.Entry<String, View.OnClickListener> item : itemMap.entrySet()) {
             View v = inflater.inflate(
                     R.layout.item_list_popup_selector, binding.contentList, false);
@@ -48,7 +49,11 @@ public class SelectorPopupWindow extends PopupWindow {
                 dismiss();
                 item.getValue().onClick(v1);
             });
+            lastLineView = v.findViewById(R.id.line);
             binding.contentList.addView(v);
+        }
+        if (lastLineView != null) {
+            lastLineView.setVisibility(View.GONE);
         }
         return this;
     }
