@@ -1,5 +1,6 @@
 package com.scrat.zhuhaibus.module.bus.detail;
 
+import com.scrat.zhuhaibus.data.modle.BusLine;
 import com.scrat.zhuhaibus.data.modle.BusStation;
 import com.scrat.zhuhaibus.data.modle.BusStop;
 
@@ -21,6 +22,8 @@ public interface BusDetailContract {
     interface BusDetailView {
 
         void setPresenter(BusDetailPresenter presenter);
+
+        void showBusLine(BusLine line);
 
         void showLoadingBusStop();
 

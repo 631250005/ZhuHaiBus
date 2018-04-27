@@ -25,29 +25,24 @@ import rx.schedulers.Schedulers;
 
 public class BusDetailPresenter implements BusDetailContract.BusDetailPresenter {
     private BusDetailContract.BusDetailView view;
-    private String busId;
-    private String lineName;
-    private String fromStation;
+    private BusLine line;
     private Subscription refreshSubscription;
     private BusStopDao busStopDao;
-    private String toStation;
 
     public BusDetailPresenter(
             Context context,
             BusDetailContract.BusDetailView view,
             BusLine line) {
         busStopDao = new BusStopDao(context);
-        this.busId = line.getId();
-        this.lineName = line.getName();
-        this.fromStation = line.getFromStation();
-        this.toStation = line.getToStation();
+        this.line = line;
         this.view = view;
         view.setPresenter(this);
+        view.showBusLine(line);
     }
 
     @Override
     public void initBusStop() {
-        List<BusStop> stops = busStopDao.getBusStopList(busId);
+        List<BusStop> stops = busStopDao.getBusStopList(line.getId());
         if (!stops.isEmpty()) {
             view.showBusStop(stops);
             refreshStation();
@@ -60,7 +55,7 @@ public class BusDetailPresenter implements BusDetailContract.BusDetailPresenter 
     public void loadBusStop() {
         view.showLoadingBusStop();
         DataRepository.getInstance().getXinheApiService()
-                .getBusStop("GetStationList", busId, System.currentTimeMillis())
+                .getBusStop("GetStationList", line.getId(), System.currentTimeMillis())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.io())
                 .doOnNext(busLines -> {
@@ -68,8 +63,8 @@ public class BusDetailPresenter implements BusDetailContract.BusDetailPresenter 
                     if (busLines.getData() == null || busLines.getData().isEmpty()) {
                         return;
                     }
-                    busStopDao.delete(busId);
-                    busStopDao.save(busLines.getData(), busId);
+                    busStopDao.delete(line.getId());
+                    busStopDao.save(busLines.getData(), line.getId());
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<BaseXinHeRes<List<BusStop>>>() {
@@ -104,7 +99,7 @@ public class BusDetailPresenter implements BusDetailContract.BusDetailPresenter 
 
         view.showRefreshStation();
         refreshSubscription = DataRepository.getInstance().getXinheApiService()
-                .getBusStation("GetBusListOnRoad", lineName, fromStation, System.currentTimeMillis())
+                .getBusStation("GetBusListOnRoad", line.getName(), line.getFromStation(), System.currentTimeMillis())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<BaseXinHeRes<List<BusStation>>>() {

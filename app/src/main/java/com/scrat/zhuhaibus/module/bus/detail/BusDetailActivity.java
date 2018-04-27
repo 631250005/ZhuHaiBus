@@ -49,6 +49,7 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
 
     private BusDetailContract.BusDetailPresenter presenter;
     private ActivityBusDetailBinding binding;
+    private ItemHeaderBusDetailBinding headerBinding;
     private SelectorPopupWindow selector;
     private Adapter adapter;
     private boolean autoRefresh;
@@ -64,16 +65,13 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
         binding.list.setLayoutManager(new LinearLayoutManager(this));
         binding.list.setHasFixedSize(true);
         binding.list.setAdapter(adapter);
-        ItemHeaderBusDetailBinding headerBinding = ItemHeaderBusDetailBinding.inflate(inflater, binding.list, false);
+        headerBinding = ItemHeaderBusDetailBinding.inflate(inflater, binding.list, false);
         adapter.setHeader(headerBinding.getRoot());
         ItemFooterBusDetailBinding footerBinding = ItemFooterBusDetailBinding.inflate(inflater, binding.list, false);
         adapter.setFooter(footerBinding.getRoot());
 
         BusLine line = (BusLine) getIntent().getSerializableExtra(DATA);
-        String tips = "票价：" + line.getPrice() + " 元，营运时间：" + line.getBeginTime() + " ～ " + line.getEndTime();
-        headerBinding.tip.setText(tips);
         new BusDetailPresenter(getApplicationContext(), this, line);
-        binding.title.setText(String.format("%s 开往 %s", line.getName(), line.getToStation()));
 
         binding.srl.setOnRefreshListener(() -> {
             presenter.refreshStation();
@@ -126,6 +124,13 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
     @Override
     public void setPresenter(BusDetailContract.BusDetailPresenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public void showBusLine(BusLine line) {
+        String tips = "票价：" + line.getPrice() + " 元，营运时间：" + line.getBeginTime() + " ～ " + line.getEndTime();
+        headerBinding.tip.setText(tips);
+        binding.title.setText(String.format("%s 开往 %s", line.getName(), line.getToStation()));
     }
 
     @Override
