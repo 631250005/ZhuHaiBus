@@ -45,7 +45,7 @@ public class SelectorPopupWindow extends PopupWindow {
                     R.layout.item_list_popup_selector, binding.contentList, false);
             TextView textView = v.findViewById(R.id.title);
             textView.setText(item.getKey());
-            v.setOnClickListener(v1 -> {
+            textView.setOnClickListener(v1 -> {
                 dismiss();
                 item.getValue().onClick(v1);
             });
