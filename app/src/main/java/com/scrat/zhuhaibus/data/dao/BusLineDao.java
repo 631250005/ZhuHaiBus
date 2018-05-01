@@ -6,11 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
+import com.scrat.zhuhaibus.data.modle.BusLine;
 import com.scrat.zhuhaibus.framework.db.AppDatabaseConfig;
 import com.scrat.zhuhaibus.framework.db.BaseDao;
-import com.scrat.zhuhaibus.data.modle.BusLine;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +78,7 @@ public class BusLineDao extends BaseDao<BusLine> {
 
     public void updateExecuteTime(String busId) {
         ContentValues values = new ContentValues();
-        values.put(BusLineEntry.UPDATE_AT, new Date().getTime());
+        values.put(BusLineEntry.UPDATE_AT, System.currentTimeMillis());
         getDatabase().update(getTableName(), values, BusLineEntry.BUS_ID + "=?", new String[]{busId});
     }
 
