@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public abstract class BaseDao<T> implements SQLiteManager.SQLiteTable {
     private List<Class<? extends IPatcher<T>>> mPatcherList;
 
     public BaseDao(String tableName, Context context, DatabaseConfig config) {
-        mContext = context;
+        mContext = context.getApplicationContext();
         mTableName = tableName;
         mConfig = config;
     }
@@ -182,6 +183,16 @@ public abstract class BaseDao<T> implements SQLiteManager.SQLiteTable {
         }
     }
 
+    @Nullable
+    public T findOne() {
+        Cursor cursor = getDatabase().query(mTableName, ALL_COLS, null, null, null, null, null, "1");
+        List<T> t = findListByCursor(cursor, 1);
+        if (t.isEmpty()) {
+            return null;
+        }
+        return t.get(0);
+    }
+
     public List<T> findAll() {
         Cursor cursor = getDatabase().query(mTableName, ALL_COLS, null, null, null, null, null);
         return findListByCursor(cursor);
@@ -199,6 +210,9 @@ public abstract class BaseDao<T> implements SQLiteManager.SQLiteTable {
         return 0;
     }
 
+    public void createTable(SQLiteDatabase database) {
+        onCreate(database);
+    }
     /**
      * 创建表
      */

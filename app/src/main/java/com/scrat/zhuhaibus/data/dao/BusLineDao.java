@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class BusLineDao extends BaseDao<BusLine> {
     public BusLineDao(Context context) {
-        super(BusLineEntry.TABLE_NAME, context.getApplicationContext(), AppDatabaseConfig.getInstance());
+        super(BusLineEntry.TABLE_NAME, context, AppDatabaseConfig.getInstance());
     }
 
     @Override

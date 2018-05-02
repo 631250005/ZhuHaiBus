@@ -25,6 +25,7 @@ import com.scrat.zhuhaibus.module.bus.detail.BusDetailActivity;
 import com.scrat.zhuhaibus.module.bus.search.SearchActivity;
 
 import java.util.List;
+import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -143,9 +144,10 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
     }
 
     @Override
-    public void showHistory(List<BusLine> list) {
+    public void showHistory(List<BusLine> list, Map<String, Integer> timesColorMap) {
         binding.emptyHistoryView.setVisibility(View.GONE);
-        adapter.replaceData(list);
+        adapter.setTimesColorMap(timesColorMap)
+                .replaceData(list);
     }
 
     private interface OnItemClickListener {
@@ -156,9 +158,15 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
 
     private static class Adapter extends BaseRecyclerViewAdapter<BusLine> {
         private OnItemClickListener listener;
+        private Map<String, Integer> timesColorMap;
 
         private Adapter(OnItemClickListener listener) {
             this.listener = listener;
+        }
+
+        private Adapter setTimesColorMap(Map<String, Integer> timesColorMap) {
+            this.timesColorMap = timesColorMap;
+            return this;
         }
 
         @Override
@@ -168,6 +176,13 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
             holder.setText(R.id.content, title)
                     .setOnClickListener(v -> listener.onItemClick(line))
                     .setOnClickListener(R.id.delete, v -> listener.onItemDelete(line));
+            View view = holder.getView(R.id.item_container);
+            Integer colorResId = timesColorMap.get(line.getId());
+            if (colorResId == null) {
+                view.setBackgroundColor(view.getContext().getResources().getColor(android.R.color.white));
+            } else {
+                view.setBackgroundColor(view.getContext().getResources().getColor(colorResId));
+            }
         }
 
         @Override

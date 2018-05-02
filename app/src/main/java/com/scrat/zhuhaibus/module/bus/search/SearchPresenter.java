@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.data.DataRepository;
+import com.scrat.zhuhaibus.data.dao.BusHistoryDao;
 import com.scrat.zhuhaibus.data.dao.BusLineDao;
 import com.scrat.zhuhaibus.data.modle.BaseXinHeRes;
 import com.scrat.zhuhaibus.data.modle.BusLine;
@@ -26,9 +27,11 @@ public class SearchPresenter implements SearchContract.SearchPresenter {
     private SearchContract.SearchView view;
     private Subscription subscription;
     private BusLineDao busLineDao;
+    private BusHistoryDao busHistoryDao;
 
     public SearchPresenter(Context ctx, SearchContract.SearchView view) {
         busLineDao = new BusLineDao(ctx);
+        busHistoryDao = new BusHistoryDao(ctx);
         this.view = view;
         view.setPresenter(this);
     }
@@ -75,5 +78,6 @@ public class SearchPresenter implements SearchContract.SearchPresenter {
     public void saveHistory(BusLine line) {
         busLineDao.delete(line.getId());
         busLineDao.save(line);
+        busHistoryDao.addTimes(line.getId());
     }
 }

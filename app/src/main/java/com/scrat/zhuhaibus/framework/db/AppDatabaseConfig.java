@@ -2,6 +2,7 @@ package com.scrat.zhuhaibus.framework.db;
 
 import android.content.Context;
 
+import com.scrat.zhuhaibus.data.dao.BusHistoryDao;
 import com.scrat.zhuhaibus.data.dao.BusLineDao;
 import com.scrat.zhuhaibus.data.dao.BusStopDao;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class AppDatabaseConfig implements DatabaseConfig {
     private static final String DB_NAME = "bus.db";
-    private static final int DB_VER = 1;
+    private static final int DB_VER = 2;
 
     private static class SingletonHolder {
         private static AppDatabaseConfig instance = new AppDatabaseConfig();
@@ -37,8 +38,11 @@ public class AppDatabaseConfig implements DatabaseConfig {
     @Override
     public List<Class<? extends SQLiteManager.SQLiteTable>> getTables(Context context) {
         List<Class<? extends SQLiteManager.SQLiteTable>> ret = new ArrayList<>();
+        // 1
         ret.add(BusLineDao.class);
         ret.add(BusStopDao.class);
+        // 2
+        ret.add(BusHistoryDao.class);
         return ret;
     }
 }
