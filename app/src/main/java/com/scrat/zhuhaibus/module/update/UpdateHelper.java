@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
+import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.data.DataRepository;
 import com.scrat.zhuhaibus.data.local.Preferences;
 import com.scrat.zhuhaibus.data.modle.Res;
@@ -79,7 +80,7 @@ public class UpdateHelper {
                         int serverForceVer = Preferences.getInstance().getLastServerForceVerCode();
                         if (currVerCode < serverForceVer) {
                             dialog.setMessage(updateInfo.getContent());
-                            dialog.setButton(DialogInterface.BUTTON_POSITIVE, "立即更新", (dialogInterface, i) -> {
+                            dialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(R.string.update_now), (dialogInterface, i) -> {
                                 dialog.dismiss();
                                 downloadApk(currActivity, updateInfo.getUrl());
                             });
@@ -92,10 +93,10 @@ public class UpdateHelper {
                         if ((ignoreCacheVer && currVerCode < lastServerVer) || lastIgnoreVer < lastServerVer) {
                             Preferences.getInstance().setLastIgnoreVerCode(lastServerVer);
                             dialog.setMessage(updateInfo.getContent());
-                            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "稍后再说", (dialogInterface, i) -> {
+                            dialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(R.string.hold_on), (dialogInterface, i) -> {
                                 dialog.dismiss();
                             });
-                            dialog.setButton(DialogInterface.BUTTON_POSITIVE, "更新", (dialogInterface, i) -> {
+                            dialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(R.string.update), (dialogInterface, i) -> {
                                 dialog.dismiss();
                                 downloadApk(currActivity, updateInfo.getUrl());
                             });
@@ -104,7 +105,7 @@ public class UpdateHelper {
                         }
 
                         if (showNoNeedToUpdateToast) {
-                            Toast.makeText(currActivity, "很棒！你已经是最新版本啦！", Toast.LENGTH_LONG).show();
+                            Toast.makeText(currActivity, activity.getString(R.string.new_ver_already), Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -119,7 +120,7 @@ public class UpdateHelper {
             intent.setData(uri);
             activity.startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(activity.getApplicationContext(), "请前往应用市场更新", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.goto_app_store_to_update), Toast.LENGTH_LONG).show();
         }
     }
 

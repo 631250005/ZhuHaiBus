@@ -48,7 +48,6 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="16dp"
-            android:text="共搜出 10 条结果"
             android:textColor="@color/blue_gray_800"
             android:visibility="invisible" />
 

@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">晴天公交(珠海)</string>
+    <string name="title_home">巴士實況</string>
+    <string name="discovery">發現</string>
+    <string name="title_notifications">設定</string>
+
+    <string name="cancel">取消</string>
+    <string name="setting">設定</string>
+    <string name="about">關於我們</string>
+    <string name="feedback">幫助與意見反映</string>
+    <string name="update">新版更新</string>
+    <string name="clear_cache">清理儲存空間</string>
+    <string name="confirm">确定</string>
+    <string name="delete">删除</string>
+    <string name="loading">載入中…</string>
+    <string name="begin">始</string>
+    <string name="end">終</string>
+    <string name="share_app">傳送該APP</string>
+    <string name="scan_and_download">掃描安裝</string>
+    <string name="reverse_bus_line">調轉方向</string>
+    <string name="tips">溫馨提醒</string>
+
+    <string name="execute_success">設定成功</string>
+    <string name="feedback_success">反映已經送達</string>
+    <string name="feedback_success_content">多謝您嘅意見，我哋一定會好好考慮！</string>
+    <string name="clear_cache_content">您的儲存空間會被清理</string>
+    <string name="delete_history">删除紀錄</string>
+    <string name="search_hint">搜尋</string>
+    <string name="feedback_hint">您想同我哋講…</string>
+    <string name="search_bus_hint"> 請輸入巴士線，例如：k1</string>
+    <string name="slogan">愿每一次公交都与你同行</string>
+    <string name="error_msg">服務器出咗少少問題</string>
+    <string name="auto_refresh_switch_on">打開自動刷新</string>
+    <string name="already_switch_on_auto_refresh">已為您打開自動刷新</string>
+    <string name="auto_refresh_switch_off">關閉自動刷新</string>
+    <string name="already_switch_off_auto_refresh">已為您關閉自動刷新</string>
+    <string name="contact_me">聯繫作者：huzhenjie.dev@gmail.com</string>
+    <string name="goto_app_store_to_update">請到GooglePlay中更新</string>
+    <string name="new_ver_already">您已經係最新版！</string>
+    <string name="hold_on">遲D先</string>
+    <string name="update_now">即刻更新</string>
+</resources>
