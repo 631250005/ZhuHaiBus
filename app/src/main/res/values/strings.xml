@@ -26,6 +26,7 @@
     <string name="clear_cache_content">您的数据将会在地球上彻底消失</string>
     <string name="delete_history">删除历史</string>
     <string name="search_hint">搜索</string>
+    <string name="searching">搜索中…</string>
     <string name="feedback_hint">您想跟我们说…</string>
     <string name="search_bus_hint"> 请输入路线，如：k1</string>
     <string name="slogan">愿每一次公交都与你同行</string>
@@ -39,4 +40,9 @@
     <string name="new_ver_already">很棒！您已经是最新版本啦！</string>
     <string name="hold_on">稍后再说</string>
     <string name="update_now">立即更新</string>
+    <string name="bus_line_to">%1$s 开往 %2$s</string>
+    <string name="bus_line_to_2">%1$s  开往  %2$s</string>
+    <string name="price_tip">票价：%1$s 元，营运时间：%2$s ～ %3$s</string>
+    <string name="del_bus_line_tip">确定删除 "%1$s 开往 %2$s" ？</string>
+    <string name="search_result_count">共搜出 %1$d 条结果</string>
 </resources>

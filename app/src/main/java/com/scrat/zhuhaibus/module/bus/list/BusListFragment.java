@@ -69,7 +69,7 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
 
             @Override
             public void onItemDelete(BusLine line) {
-                dialog.setContent(String.format("确定删除 \"%s 开往 %s\" ？", line.getName(), line.getToStation()))
+                dialog.setContent(String.format(getString(R.string.del_bus_line_tip), line.getName(), line.getToStation()))
                         .setPositive(getString(R.string.confirm), v -> presenter.deleteHistory(line.getId()));
                 dialog.show(binding.list);
             }
@@ -172,7 +172,7 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
         @Override
         protected void onBindItemViewHolder(
                 BaseRecyclerViewHolder holder, int position, BusLine line) {
-            String title = String.format("%s  开往  %s", line.getName(), line.getToStation());
+            String title = String.format(holder.getContext().getString(R.string.bus_line_to_2), line.getName(), line.getToStation());
             holder.setText(R.id.content, title)
                     .setOnClickListener(v -> listener.onItemClick(line))
                     .setOnClickListener(R.id.delete, v -> listener.onItemDelete(line));

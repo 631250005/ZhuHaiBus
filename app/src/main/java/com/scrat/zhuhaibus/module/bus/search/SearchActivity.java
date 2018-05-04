@@ -98,7 +98,7 @@ public class SearchActivity extends BaseActivity implements SearchContract.Searc
 
     @Override
     public void showSearching() {
-        showTips("搜索中...");
+        showTips(getString(R.string.searching));
     }
 
     @Override
@@ -110,7 +110,8 @@ public class SearchActivity extends BaseActivity implements SearchContract.Searc
     @Override
     public void showSearchRes(List<BusLine> lines) {
         adapter.replaceData(lines);
-        String msg = String.format("共搜出 %s 条结果", lines.size());
+        String msgHint = getString(R.string.search_result_count);
+        String msg = String.format(msgHint, lines.size());
         showTips(msg);
     }
 
@@ -135,7 +136,7 @@ public class SearchActivity extends BaseActivity implements SearchContract.Searc
         @Override
         protected void onBindItemViewHolder(
                 BaseRecyclerViewHolder holder, int position, BusLine busLine) {
-            String name = String.format("%s  开往  %s", busLine.getName(), busLine.getToStation());
+            String name = String.format(holder.getContext().getString(R.string.bus_line_to_2), busLine.getName(), busLine.getToStation());
             holder.setText(R.id.content, name)
                     .setOnClickListener(v -> {
                         listener.onItemClick(busLine);

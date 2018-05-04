@@ -60,6 +60,9 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_bus_detail);
 
+        BusLine line = (BusLine) getIntent().getSerializableExtra(DATA);
+        new BusDetailPresenter(getApplicationContext(), this, line);
+
         adapter = new Adapter();
         LayoutInflater inflater = LayoutInflater.from(this);
         binding.list.setLayoutManager(new LinearLayoutManager(this));
@@ -69,9 +72,6 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
         adapter.setHeader(headerBinding.getRoot());
         ItemFooterBusDetailBinding footerBinding = ItemFooterBusDetailBinding.inflate(inflater, binding.list, false);
         adapter.setFooter(footerBinding.getRoot());
-
-        BusLine line = (BusLine) getIntent().getSerializableExtra(DATA);
-        new BusDetailPresenter(getApplicationContext(), this, line);
 
         binding.srl.setOnRefreshListener(() -> {
             presenter.refreshStation();
@@ -128,9 +128,8 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
 
     @Override
     public void showBusLine(BusLine line) {
-        String tips = "票价：" + line.getPrice() + " 元，营运时间：" + line.getBeginTime() + " ～ " + line.getEndTime();
-        headerBinding.tip.setText(tips);
-        binding.title.setText(String.format("%s 开往 %s", line.getName(), line.getToStation()));
+        headerBinding.tip.setText(String.format(getString(R.string.price_tip), line.getPrice(), line.getBeginTime(), line.getEndTime()));
+        binding.title.setText(String.format(getString(R.string.bus_line_to), line.getName(), line.getToStation()));
     }
 
     @Override
@@ -195,16 +194,20 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
 
     private void autoRefresh() {
         binding.srl.postDelayed(() -> {
-            if (isFinishing()) {
-                return;
-            }
+            try {
+                if (isFinishing()) {
+                    return;
+                }
 
-            if (!autoRefresh) {
-                return;
-            }
+                if (!autoRefresh) {
+                    return;
+                }
 
-            presenter.refreshStation();
-            autoRefresh();
+                presenter.refreshStation();
+                autoRefresh();
+            } catch (Exception e) {
+                L.e(e);
+            }
         }, REFRESH_SECOND * 1000L);
     }
 

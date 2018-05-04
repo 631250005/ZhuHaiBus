@@ -41,6 +41,10 @@ public class BusDetailPresenter implements BusDetailContract.BusDetailPresenter 
 
     @Override
     public void initBusStop() {
+        if (line == null) {
+            view.showLoadBusStopError(R.string.error_msg);
+            return;
+        }
         view.showBusLine(line);
         List<BusStop> stops = busStopDao.getBusStopList(line.getId());
         if (!stops.isEmpty()) {
