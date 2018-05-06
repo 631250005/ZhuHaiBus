@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">晴天公交(珠海)</string>
     <string name="title_home">实时公交</string>
+    <string name="route">路线</string>
     <string name="discovery">发现</string>
     <string name="title_notifications">设置</string>
 
@@ -45,4 +46,6 @@
     <string name="price_tip">票价：%1$s 元，营运时间：%2$s ～ %3$s</string>
     <string name="del_bus_line_tip">确定删除 "%1$s 开往 %2$s" ？</string>
     <string name="search_result_count">共搜出 %1$d 条结果</string>
+    <string name="route_start_hint">请输入起点站，如：香洲</string>
+    <string name="route_end_hint">请输入终点站，如：拱北</string>
 </resources>

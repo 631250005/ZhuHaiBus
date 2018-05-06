@@ -11,6 +11,7 @@ import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.module.bus.list.BusListFragment;
 import com.scrat.zhuhaibus.module.news.list.NewsFragment;
+import com.scrat.zhuhaibus.module.route.RouteFragment;
 import com.scrat.zhuhaibus.module.setting.SettingFragment;
 import com.scrat.zhuhaibus.module.update.UpdateHelper;
 
@@ -24,6 +25,7 @@ public class MainActivity extends BaseActivity {
 
     private BusListFragment busListFragment;
     private SettingFragment settingFragment;
+    private RouteFragment routeFragment;
     private NewsFragment newsFragment;
     private ActivityMainBinding binding;
     private UpdateHelper updateHelper;
@@ -46,6 +48,9 @@ public class MainActivity extends BaseActivity {
                     return true;
                 case R.id.navigation_notifications:
                     switchFragment(R.id.content, settingFragment);
+                    return true;
+                case R.id.navigation_route:
+                    switchFragment(R.id.content, routeFragment);
                     return true;
             }
             return false;
@@ -91,6 +96,7 @@ public class MainActivity extends BaseActivity {
     private void initFragment() {
         busListFragment = BusListFragment.newInstance();
         settingFragment = SettingFragment.newInstance();
+        routeFragment = RouteFragment.newInstance();
         newsFragment = NewsFragment.newInstance();
     }
 }

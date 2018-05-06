@@ -21,6 +21,11 @@
         <item name="android:windowBackground">@drawable/bg_splash</item>
     </style>
 
+    <style name="CustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
     <style name="PopupIosDialogBtn">
         <item name="android:layout_width">0dp</item>
         <item name="android:gravity">center</item>
@@ -88,6 +93,17 @@
         <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
         <item name="android:textColor">@color/blue_gray_900</item>
         <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="RouteFragmentSearchView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/blue_gray_400</item>
     </style>
 
 </resources>
