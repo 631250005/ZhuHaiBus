@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class DataRepository {
-    private static final String SHARE_URL = "https://xd.scrats.cn/u/zhbus/app.html";
+    private static final String SHARE_URL = "https://scrats.cn/u/zhbus/app.html";
 
     private static class SingletonHolder {
         private static DataRepository instance = new DataRepository();
