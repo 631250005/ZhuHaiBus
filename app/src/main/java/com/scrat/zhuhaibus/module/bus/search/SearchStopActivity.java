@@ -49,8 +49,6 @@ public class SearchStopActivity extends BaseActivity implements SearchStopContra
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search_stop);
-        String hint = getIntent().getStringExtra(NAME);
-        binding.content.setText(hint);
 
         adapter = new Adapter((name, location) -> {
             Intent i = new Intent();
@@ -89,6 +87,14 @@ public class SearchStopActivity extends BaseActivity implements SearchStopContra
 
             }
         });
+
+        String hint = getIntent().getStringExtra(NAME);
+        if (!TextUtils.isEmpty(hint)) {
+            binding.content.setText(hint);
+            binding.content.selectAll();
+            binding.clear.setVisibility(View.VISIBLE);
+            search(hint);
+        }
     }
 
     private void search(String content) {
