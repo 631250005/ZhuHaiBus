@@ -19,7 +19,15 @@
     <string name="share_app">傳送該APP</string>
     <string name="scan_and_download">掃描安裝</string>
     <string name="reverse_bus_line">調轉方向</string>
+    <string name="reverse_success">調轉成功</string>
     <string name="tips">溫馨提醒</string>
+    <string name="day">天</string>
+    <string name="hour">小時</string>
+    <string name="minute">分鐘</string>
+    <string name="right_away">馬上</string>
+    <string name="kilometers">公里</string>
+    <string name="meter">米</string>
+    <string name="walking">步行</string>
 
     <string name="execute_success">設定成功</string>
     <string name="feedback_success">反映已經送達</string>

@@ -32,6 +32,36 @@ import java.util.Calendar;
  */
 
 public class Utils {
+    public static String formatDuration(Context applicationContext, int second) {
+        StringBuilder res = new StringBuilder();
+        int days = second / (3600 * 24);
+        if (days > 0) {
+            res.append(days).append(applicationContext.getString(R.string.day));
+        }
+        int hours = (second % (3600 * 24)) / 3600;
+        if (hours > 0) {
+            res.append(hours).append(applicationContext.getString(R.string.hour));
+        }
+        int minutes = (second % 3600) / 60;
+        if (minutes > 0) {
+            res.append(minutes).append(applicationContext.getString(R.string.minute));
+        }
+        if (res.length() == 0) {
+            res.append(applicationContext.getString(R.string.right_away));
+        }
+        return res.toString();
+    }
+
+    public static String formatDistance(Context applicationContext, int m) {
+        if (m > 1000) {
+            if (m % 1000 == 0) {
+                return m / 1000 + applicationContext.getString(R.string.kilometers);
+            }
+            return (float) m / 1000 + applicationContext.getString(R.string.kilometers);
+        }
+        return m + applicationContext.getString(R.string.meter);
+    }
+
     public static String formatDate(long ts) {
 
         long zeroTs = getZeroTs();

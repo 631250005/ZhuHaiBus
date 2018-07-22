@@ -103,7 +103,7 @@
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textColor">@color/blue_gray_400</item>
+        <item name="android:textColor">@color/blue_gray_900</item>
     </style>
 
 </resources>

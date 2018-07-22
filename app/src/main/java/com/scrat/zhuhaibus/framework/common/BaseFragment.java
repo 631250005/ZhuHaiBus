@@ -10,9 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.scrat.zhuhaibus.BuildConfig;
 import com.scrat.zhuhaibus.framework.util.L;
-import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by scrat on 2017/4/27.
@@ -20,27 +18,27 @@ import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseFragment extends Fragment {
 
-    private String fragmentName = "BaseFragment";
+//    private String fragmentName = "BaseFragment";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (BuildConfig.DEBUG && getClass().isAnnotationPresent(ViewAnnotation.class)) {
-            ViewAnnotation inject = getClass().getAnnotation(ViewAnnotation.class);
-            fragmentName = inject.modelName();
-            L.d(fragmentName);
-        }
+//        if (BuildConfig.DEBUG && getClass().isAnnotationPresent(ViewAnnotation.class)) {
+//            ViewAnnotation inject = getClass().getAnnotation(ViewAnnotation.class);
+//            fragmentName = inject.modelName();
+//            L.d(fragmentName);
+//        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart(fragmentName);
+//        MobclickAgent.onPageStart(fragmentName);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd(fragmentName);
+//        MobclickAgent.onPageEnd(fragmentName);
     }
 
     protected void showMsg(CharSequence message) {

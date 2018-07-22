@@ -10,7 +10,6 @@ import com.scrat.zhuhaibus.databinding.ActivityMainBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.module.bus.list.BusListFragment;
-import com.scrat.zhuhaibus.module.news.list.NewsFragment;
 import com.scrat.zhuhaibus.module.route.RouteFragment;
 import com.scrat.zhuhaibus.module.setting.SettingFragment;
 import com.scrat.zhuhaibus.module.update.UpdateHelper;
@@ -26,7 +25,7 @@ public class MainActivity extends BaseActivity {
     private BusListFragment busListFragment;
     private SettingFragment settingFragment;
     private RouteFragment routeFragment;
-    private NewsFragment newsFragment;
+//    private NewsFragment newsFragment;
     private ActivityMainBinding binding;
     private UpdateHelper updateHelper;
 
@@ -43,9 +42,9 @@ public class MainActivity extends BaseActivity {
                 case R.id.navigation_home:
                     switchFragment(R.id.content, busListFragment);
                     return true;
-                case R.id.navigation_dashboard:
-                    switchFragment(R.id.content, newsFragment);
-                    return true;
+//                case R.id.navigation_dashboard:
+//                    switchFragment(R.id.content, newsFragment);
+//                    return true;
                 case R.id.navigation_notifications:
                     switchFragment(R.id.content, settingFragment);
                     return true;
@@ -72,6 +71,8 @@ public class MainActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode >= 10 && requestCode <= 19) {
             busListFragment.onActivityResult(requestCode, resultCode, data);
+        } else if (requestCode >= 20 && requestCode <= 29) {
+            routeFragment.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -97,6 +98,6 @@ public class MainActivity extends BaseActivity {
         busListFragment = BusListFragment.newInstance();
         settingFragment = SettingFragment.newInstance();
         routeFragment = RouteFragment.newInstance();
-        newsFragment = NewsFragment.newInstance();
+//        newsFragment = NewsFragment.newInstance();
     }
 }

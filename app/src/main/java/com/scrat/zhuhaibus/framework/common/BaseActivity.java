@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.scrat.zhuhaibus.framework.util.L;
 import com.umeng.analytics.MobclickAgent;
 
 import java.lang.reflect.Field;
@@ -34,29 +33,29 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private List<PopupWindow> popupWindowList;
     private Fragment currFragment;
-    private String activityName = "BaseActivity";
+//    private String activityName = "BaseActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getClass().isAnnotationPresent(ViewAnnotation.class)) {
-            ViewAnnotation inject = getClass().getAnnotation(ViewAnnotation.class);
-            activityName = inject.modelName();
-            L.d(activityName);
-        }
+//        if (getClass().isAnnotationPresent(ViewAnnotation.class)) {
+//            ViewAnnotation inject = getClass().getAnnotation(ViewAnnotation.class);
+//            activityName = inject.modelName();
+//            L.d(activityName);
+//        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart(activityName);
+//        MobclickAgent.onPageStart(activityName);
         MobclickAgent.onResume(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd(activityName);
+//        MobclickAgent.onPageEnd(activityName);
         MobclickAgent.onPause(this);
     }
 

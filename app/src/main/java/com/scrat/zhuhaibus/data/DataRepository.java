@@ -2,6 +2,7 @@ package com.scrat.zhuhaibus.data;
 
 import android.content.Context;
 
+import com.scrat.zhuhaibus.data.net.AmapService;
 import com.scrat.zhuhaibus.data.net.CoreService;
 import com.scrat.zhuhaibus.data.net.XinheApiService;
 import com.scrat.zhuhaibus.framework.util.Utils;
@@ -29,6 +30,7 @@ public class DataRepository {
 
     private XinheApiService xinheApiService;
     private CoreService coreService;
+    private AmapService amapService;
     private boolean init;
 
     private DataRepository() {
@@ -40,14 +42,22 @@ public class DataRepository {
         }
         init = true;
 
+        OkHttpClient.Builder xinheClient = new OkHttpClient().newBuilder()
+                .addInterceptor(chain -> {
+                    Request req = chain.request().newBuilder()
+                            .addHeader("Cookie", "openid3=aiFDwshul-vFhiZppWLrFNdmfXNG")
+                            .build();
+                    return chain.proceed(req);
+                });
         Retrofit xinheRetrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl("http://www.zhbuswx.com")
+                .client(xinheClient.build())
                 .build();
         xinheApiService = xinheRetrofit.create(XinheApiService.class);
 
-        OkHttpClient.Builder client = new OkHttpClient().newBuilder()
+        OkHttpClient.Builder coreClient = new OkHttpClient().newBuilder()
                 .addInterceptor(chain -> {
                     Request req = chain.request().newBuilder()
                             .addHeader("ch", Utils.getChannelName(ctx))
@@ -61,9 +71,16 @@ public class DataRepository {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl("https://gogo.scrats.cn")
-                .client(client.build())
+                .client(coreClient.build())
                 .build();
         coreService = coreRetrofit.create(CoreService.class);
+
+        Retrofit amapRetrofit = new Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl("https://restapi.amap.com")
+                .build();
+        amapService = amapRetrofit.create(AmapService.class);
     }
 
     public void release() {
@@ -78,7 +95,12 @@ public class DataRepository {
         return coreService;
     }
 
+    public AmapService getAmapService() {
+        return amapService;
+    }
+
     public String getShareUrl() {
         return String.format("%s?_=%s", SHARE_URL, System.currentTimeMillis());
     }
+
 }

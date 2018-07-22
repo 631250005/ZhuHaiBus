@@ -52,6 +52,10 @@
             android:name=".module.news.detail.NewsDetailActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".module.bus.search.SearchStopActivity"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="${UMENG_APPKEY}" />

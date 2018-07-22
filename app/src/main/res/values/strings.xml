@@ -19,7 +19,15 @@
     <string name="share_app">分享给好友</string>
     <string name="scan_and_download">扫码下载</string>
     <string name="reverse_bus_line">切换方向</string>
+    <string name="reverse_success">切换成功</string>
     <string name="tips">温馨提示</string>
+    <string name="day">天</string>
+    <string name="hour">小时</string>
+    <string name="minute">分钟</string>
+    <string name="right_away">马上</string>
+    <string name="kilometers">公里</string>
+    <string name="meter">米</string>
+    <string name="walking">步行</string>
 
     <string name="execute_success">操作成功</string>
     <string name="feedback_success">反馈成功</string>
