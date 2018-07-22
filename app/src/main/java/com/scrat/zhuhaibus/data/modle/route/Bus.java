@@ -9,4 +9,27 @@ public class Bus implements Serializable {
     public List<Buslines> getBuslines() {
         return buslines;
     }
+
+    public String getFromStop() {
+        if (buslines == null || buslines.isEmpty()) {
+            return "";
+        }
+
+        return buslines.get(0).getDeparture_stop().getName();
+    }
+
+    public String getToStop() {
+        if (buslines == null || buslines.isEmpty()) {
+            return "";
+        }
+
+        return buslines.get(0).getArrival_stop().getName();
+    }
+
+    @Override
+    public String toString() {
+        return "Bus{" +
+                "buslines=" + buslines +
+                '}';
+    }
 }

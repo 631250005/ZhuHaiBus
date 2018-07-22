@@ -16,6 +16,8 @@
     <string name="loading">加载中…</string>
     <string name="begin">起</string>
     <string name="end">终</string>
+    <string name="set_off">出发</string>
+    <string name="arrivals">到达</string>
     <string name="share_app">分享给好友</string>
     <string name="scan_and_download">扫码下载</string>
     <string name="reverse_bus_line">切换方向</string>

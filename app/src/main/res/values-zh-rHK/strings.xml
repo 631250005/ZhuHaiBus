@@ -16,6 +16,8 @@
     <string name="loading">載入中…</string>
     <string name="begin">始</string>
     <string name="end">終</string>
+    <string name="set_off">出發</string>
+    <string name="arrivals">到達</string>
     <string name="share_app">傳送該APP</string>
     <string name="scan_and_download">掃描安裝</string>
     <string name="reverse_bus_line">調轉方向</string>

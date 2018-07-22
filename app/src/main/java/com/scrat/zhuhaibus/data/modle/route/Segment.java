@@ -16,4 +16,10 @@ public class Segment implements Serializable {
 //        return walking;
 //    }
 
+    @Override
+    public String toString() {
+        return "Segment{" +
+                "bus=" + bus +
+                '}';
+    }
 }

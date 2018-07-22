@@ -146,9 +146,7 @@ public class RouteFragment extends BaseFragment implements RouteContract.View {
                 busBinding.busList.removeAllViews();
                 List<Buslines> buses = segment.getBus().getBuslines();
                 for (Buslines line : buses) {
-                    String name = line.getName()
-                            .split("\\(")[0]
-                            .replace("路", "");
+                    String name = line.getSimpleName();
                     ItemListBusStopTipBinding tipBinding = ItemListBusStopTipBinding.inflate(inflater);
                     tipBinding.text.setText(name);
                     busBinding.busList.addView(tipBinding.getRoot());
@@ -163,6 +161,9 @@ public class RouteFragment extends BaseFragment implements RouteContract.View {
             if (lastBusBinding != null) {
                 lastBusBinding.next.setVisibility(View.GONE);
             }
+            holder.setOnClickListener(v -> {
+                RouteDetailActivity.show(v.getContext(), transit);
+            });
         }
 
         @Override
