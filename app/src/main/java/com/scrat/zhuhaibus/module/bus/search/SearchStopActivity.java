@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 
 import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.databinding.ActivitySearchStopBinding;
@@ -95,6 +96,14 @@ public class SearchStopActivity extends BaseActivity implements SearchStopContra
             binding.clear.setVisibility(View.VISIBLE);
             search(hint);
         }
+
+        binding.content.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                search(binding.content.getText().toString());
+                return true;
+            }
+            return false;
+        });
     }
 
     private void search(String content) {
@@ -143,7 +152,7 @@ public class SearchStopActivity extends BaseActivity implements SearchStopContra
             String stopName = (String) tip.get("name");
             String location = (String) tip.get("location");
             holder.setText(R.id.content, stopName)
-            .setOnClickListener(v -> listener.onItemClick(stopName, location));
+                    .setOnClickListener(v -> listener.onItemClick(stopName, location));
         }
 
         @Override
