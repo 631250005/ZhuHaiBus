@@ -24,5 +24,7 @@ public interface CoreService {
     Observable<Res<News>> getNewsDetail(@Path("news_id") String newsId);
 
     @GET("/zhuhaibus/static/update/cfg/android/update.json")
-    Observable<Res<UpdateInfo>> getUpdateInfo(@Query("_") long ts);
+    Observable<Res<UpdateInfo>> getUpdateInfo(@Query("ch") String ch,
+                                              @Query("vc") int vc,
+                                              @Query("_") long ts);
 }

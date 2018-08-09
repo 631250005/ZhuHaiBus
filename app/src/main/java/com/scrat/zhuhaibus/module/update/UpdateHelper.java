@@ -44,7 +44,7 @@ public class UpdateHelper {
         WeakReference<Activity> weakActivity = new WeakReference<>(activity);
         Context applicationContext = activity.getApplicationContext();
         DataRepository.getInstance().getCoreService()
-                .getUpdateInfo(System.currentTimeMillis())
+                .getUpdateInfo(Utils.getChannelName(activity), Utils.getVersionCode(activity), System.currentTimeMillis() / 1000)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(Schedulers.io())
                 .doOnNext(updateInfoRes -> {
