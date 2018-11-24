@@ -63,5 +63,5 @@
     <string name="wechat_bus_code">微信乘车码</string>
     <string name="alipay_bus_code">支付宝乘车码</string>
     <string name="complaint_setting_item">投诉/失物认领</string>
-    <string name="complaint_tip">联系电话：0756–2650123</string>
+    <string name="complaint_tip">请拨打珠海公交服务热线：0756–2650123</string>
 </resources>
