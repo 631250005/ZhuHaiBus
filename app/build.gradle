@@ -99,10 +99,10 @@ android {
             dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "h5", APP_NAME: "珠海公交"]
         }
-        _360 {
-            dimension 'internal'
-            manifestPlaceholders = [CHANNEL_NAME: "_360"]
-        }
+//        _360 {
+//            dimension 'internal'
+//            manifestPlaceholders = [CHANNEL_NAME: "_360"]
+//        }
         baidu {
             dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "baidu", APP_NAME: "珠海公交"]
