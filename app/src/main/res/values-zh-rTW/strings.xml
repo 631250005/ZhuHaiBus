@@ -62,4 +62,6 @@
     <string name="scan_pay_open_fail">程式開啟失敗</string>
     <string name="wechat_bus_code">微信掃描碼</string>
     <string name="alipay_bus_code">支付寶掃描碼</string>
+    <string name="complaint_setting_item">投訴/失物認領</string>
+    <string name="complaint_tip">聯絡電話（大陸）：0756–2650123</string>
 </resources>

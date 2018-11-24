@@ -1,62 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
-        <TextView
-            style="@style/Base.TextAppearance.AppCompat.Title"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:text="@string/setting"
-            android:textColor="@color/white" />
+            android:layout_height="wrap_content"
+            android:background="@color/bg"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/setting"
-            style="@style/ListItemSingleLineTextView"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/update" />
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Title"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:text="@string/setting"
+                android:textColor="@color/white" />
 
-        <View
-            android:layout_width="@dimen/activity_horizontal_margin"
-            android:layout_height="1px"
-            android:background="@color/white" />
+            <TextView
+                android:id="@+id/setting"
+                style="@style/ListItemSingleLineTextView"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/update" />
 
-        <TextView
-            android:id="@+id/clean_cache"
-            style="@style/ListItemSingleLineTextView"
-            android:text="@string/clear_cache" />
+            <View
+                android:layout_width="@dimen/activity_horizontal_margin"
+                android:layout_height="1px"
+                android:background="@color/white" />
 
-        <View
-            android:layout_width="@dimen/activity_horizontal_margin"
-            android:layout_height="1px"
-            android:background="@color/white" />
+            <TextView
+                android:id="@+id/clean_cache"
+                style="@style/ListItemSingleLineTextView"
+                android:text="@string/clear_cache" />
 
-        <TextView
-            android:id="@+id/feedback"
-            style="@style/ListItemSingleLineTextView"
-            android:text="@string/feedback" />
+            <View
+                android:layout_width="@dimen/activity_horizontal_margin"
+                android:layout_height="1px"
+                android:background="@color/white" />
 
-        <View
-            android:layout_width="@dimen/activity_horizontal_margin"
-            android:layout_height="1px"
-            android:background="@color/white" />
+            <TextView
+                android:id="@+id/feedback"
+                style="@style/ListItemSingleLineTextView"
+                android:text="@string/feedback" />
 
-        <TextView
-            android:id="@+id/share_app"
-            style="@style/ListItemSingleLineTextView"
-            android:text="@string/share_app" />
+            <View
+                android:layout_width="@dimen/activity_horizontal_margin"
+                android:layout_height="1px"
+                android:background="@color/white" />
 
-        <TextView
-            android:id="@+id/about"
-            style="@style/ListItemSingleLineTextView"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/about" />
+            <TextView
+                android:id="@+id/share_app"
+                style="@style/ListItemSingleLineTextView"
+                android:text="@string/share_app" />
 
-    </LinearLayout>
+            <View
+                android:layout_width="@dimen/activity_horizontal_margin"
+                android:layout_height="1px"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/complaint"
+                style="@style/ListItemSingleLineTextView"
+                android:text="@string/complaint_setting_item" />
+
+            <TextView
+                android:id="@+id/about"
+                style="@style/ListItemSingleLineTextView"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/about" />
+
+        </LinearLayout>
+    </ScrollView>
 </layout>

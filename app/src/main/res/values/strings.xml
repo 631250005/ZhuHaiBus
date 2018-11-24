@@ -62,4 +62,6 @@
     <string name="scan_pay_open_fail">应用打开失败</string>
     <string name="wechat_bus_code">微信乘车码</string>
     <string name="alipay_bus_code">支付宝乘车码</string>
+    <string name="complaint_setting_item">投诉/失物认领</string>
+    <string name="complaint_tip">联系电话：0756–2650123</string>
 </resources>

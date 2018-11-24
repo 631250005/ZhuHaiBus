@@ -27,6 +27,7 @@ public class SettingFragment extends BaseFragment implements SettingContract.Vie
 
     private FragmentSettingBinding binding;
     private IosDialog cacheDialog;
+    private IosDialog complaintDialog;
     private SettingContract.Presenter presenter;
     private UpdateHelper updateHelper;
 
@@ -46,9 +47,16 @@ public class SettingFragment extends BaseFragment implements SettingContract.Vie
                 .setContent(R.string.clear_cache_content)
                 .setNegative(R.string.cancel)
                 .setPositive(R.string.delete, v -> presenter.clearCache());
-        new SettingPresenter(getApplicationContext(),this);
+        complaintDialog = new IosDialog(getContext())
+                .setTitle(R.string.complaint_setting_item)
+                .setContent(R.string.complaint_tip)
+                .setNegative(R.string.confirm);
+        new SettingPresenter(getApplicationContext(), this);
         binding.cleanCache.setOnClickListener(v -> {
             cacheDialog.show(binding.about);
+        });
+        binding.complaint.setOnClickListener(v -> {
+            complaintDialog.show(binding.about);
         });
 
         updateHelper = new UpdateHelper();
@@ -62,6 +70,9 @@ public class SettingFragment extends BaseFragment implements SettingContract.Vie
         updateHelper.release();
         if (cacheDialog.isShowing()) {
             cacheDialog.dismiss();
+        }
+        if (complaintDialog.isShowing()) {
+            complaintDialog.dismiss();
         }
         super.onDestroyView();
     }
