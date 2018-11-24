@@ -28,6 +28,7 @@ import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.framework.util.L;
 import com.scrat.zhuhaibus.framework.view.SelectorPopupWindow;
 import com.scrat.zhuhaibus.module.feedback.FeedbackActivity;
+import com.scrat.zhuhaibus.module.pay.PayActivity;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -186,6 +187,10 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
         items.put(getString(R.string.feedback), v -> FeedbackActivity.show(this));
 
         selector.refreshItems(items).show(view);
+    }
+
+    public void attemptToPay(View view) {
+        PayActivity.show(this);
     }
 
     public void reverse(View view) {

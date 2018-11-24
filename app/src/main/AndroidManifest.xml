@@ -60,6 +60,10 @@
             android:name=".module.route.RouteDetailActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".module.pay.PayActivity"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="${UMENG_APPKEY}" />

@@ -2,69 +2,84 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/left"
-                android:layout_width="?android:attr/actionBarSize"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                android:background="@null"
-                android:contentDescription="@null"
-                android:onClick="back"
-                app:srcCompat="@drawable/ic_return_white_24dp" />
-
-            <TextView
-                android:id="@+id/title"
-                style="@style/Base.TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ellipsize="end"
+                android:background="@color/colorPrimaryDark"
                 android:gravity="center_vertical"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="@color/white" />
+                android:orientation="horizontal">
 
-            <ImageButton
-                android:layout_width="40dp"
-                android:layout_height="?android:attr/actionBarSize"
-                android:background="@null"
-                android:contentDescription="@null"
-                android:onClick="reverse"
-                app:srcCompat="@drawable/ic_order_white_24dp" />
+                <ImageButton
+                    android:id="@+id/left"
+                    android:layout_width="?android:attr/actionBarSize"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:background="@null"
+                    android:contentDescription="@null"
+                    android:onClick="back"
+                    app:srcCompat="@drawable/ic_return_white_24dp" />
 
-            <ImageButton
-                android:id="@+id/more"
-                android:layout_width="40dp"
-                android:layout_height="?android:attr/actionBarSize"
-                android:background="@null"
-                android:contentDescription="@null"
-                android:onClick="more"
-                app:srcCompat="@drawable/ic_switch_white_24dp" />
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/Base.TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/white" />
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:background="@null"
+                    android:contentDescription="@null"
+                    android:onClick="reverse"
+                    app:srcCompat="@drawable/ic_order_white_24dp" />
+
+                <ImageButton
+                    android:id="@+id/more"
+                    android:layout_width="40dp"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:background="@null"
+                    android:contentDescription="@null"
+                    android:onClick="more"
+                    app:srcCompat="@drawable/ic_switch_white_24dp" />
+
+            </LinearLayout>
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/srl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </android.support.v4.widget.SwipeRefreshLayout>
 
         </LinearLayout>
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/srl"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:onClick="attemptToPay"
+            app:srcCompat="@drawable/ic_qrcode_fill" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </android.support.v4.widget.SwipeRefreshLayout>
-
-    </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </layout>

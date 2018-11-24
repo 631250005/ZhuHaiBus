@@ -8,6 +8,8 @@
 
     <color name="bg">#eeeeee</color>
     <color name="white">#FFFFFF</color>
+    <color name="alipay">#108ee9</color>
+    <color name="wechat">#00d10c</color>
 
     <color name="danger">#f8d7da</color>
     <color name="warning">#fff3cd</color>
