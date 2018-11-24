@@ -19,9 +19,10 @@ def getVersionName = { ->
     try {
         def stdout = new ByteArrayOutputStream()
         exec {
-            commandLine 'git', 'describe', '--tags'//, '--dirty'
+            commandLine 'git', 'describe', '--tags'
             standardOutput = stdout
         }
+
         return stdout.toString().trim()
     }
     catch (ignored) {
@@ -33,7 +34,7 @@ def getVersionName = { ->
 android {
     compileSdkVersion 27
     buildToolsVersion '28.0.3'
-    flavorDimensions 'internal'
+    flavorDimensions 'channel'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -82,37 +83,35 @@ android {
         }
     }
 
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${variant.name}_${variant.versionName}.apk"
+        }
+    }
+
     productFlavors {
         gp {
-            dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "gp", APP_NAME: "珠海公交"]
         }
         oppo {
-            dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "oppo"]
         }
         xiaomi {
-            dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "xiaomi", APP_NAME: "珠海晴天公交"]
         }
         h5 {
-            dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "h5", APP_NAME: "珠海公交"]
         }
         meizu {
-            dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "meizu", APP_NAME: "珠海公交"]
         }
 //        _360 {
-//            dimension 'internal'
 //            manifestPlaceholders = [CHANNEL_NAME: "_360"]
 //        }
         baidu {
-            dimension 'internal'
             manifestPlaceholders = [CHANNEL_NAME: "baidu", APP_NAME: "珠海公交"]
         }
 //        huawei {
-//            dimension 'internal'
 //            manifestPlaceholders = [CHANNEL_NAME: "huawei"]
 //        }
     }
