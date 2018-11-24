@@ -52,7 +52,8 @@ public class BusLine implements Serializable {
     }
 
     public String getPrice() {
-        return Price;
+        return "1";
+//        return Price;
     }
 
     public String getInterval() {
