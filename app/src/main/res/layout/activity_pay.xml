@@ -8,6 +8,13 @@
         android:id="@+id/top_bar"
         layout="@layout/top_bar" />
 
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ad_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-7011153870356750/5013138594" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -40,14 +47,5 @@
             android:onClick="wechatBusCode"
             android:text="@string/wechat_bus_code" />
     </LinearLayout>
-
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/ad_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/white"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-7011153870356750/5013138594" />
 
 </LinearLayout>
