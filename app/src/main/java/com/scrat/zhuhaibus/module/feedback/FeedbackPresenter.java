@@ -11,15 +11,20 @@ import rx.schedulers.Schedulers;
 
 public class FeedbackPresenter implements FeedbackContract.Presenter {
     private FeedbackContract.View view;
+    private boolean feedbackStatus;
 
     public FeedbackPresenter(FeedbackContract.View view) {
         this.view = view;
+        feedbackStatus = false;
         view.setPresenter(this);
     }
 
     @Override
     public void feedback(String contact, String content) {
-
+        if (feedbackStatus) {
+            return;
+        }
+        feedbackStatus = true;
         view.onFeedback();
         Feedback feedback = new Feedback()
                 .setContact(contact)
@@ -31,7 +36,7 @@ public class FeedbackPresenter implements FeedbackContract.Presenter {
                 .subscribe(new Subscriber<Res>() {
                     @Override
                     public void onCompleted() {
-
+                        feedbackStatus = false;
                     }
 
                     @Override
