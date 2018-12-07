@@ -49,21 +49,31 @@ public class PayActivity extends BaseActivity {
     }
 
     public void alipayBusCode(View view) {
-        openApp("alipays://platformapi/startapp?appId=20000056");
+        boolean openSuccess = openApp("alipayqr://platformapi/startapp?saId=200011235");
+        if (!openSuccess) {
+            openSuccess = openApp("alipays://platformapi/startapp?appId=20000056");
+        }
+        if (!openSuccess) {
+            showMessage(R.string.scan_pay_open_fail);
+        }
     }
 
     public void wechatBusCode(View view) {
-        openApp("weixin://");
+        boolean openSuccess = openApp("weixin://");
+        if (!openSuccess) {
+            showMessage(R.string.scan_pay_open_fail);
+        }
     }
 
-    public void openApp(String url) {
+    public boolean openApp(String url) {
         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
             startActivity(i);
+            return true;
         } catch (Exception e) {
             L.e(e);
-            showMessage(R.string.scan_pay_open_fail);
+            return false;
         }
     }
 }
