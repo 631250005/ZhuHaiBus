@@ -25,6 +25,7 @@ import com.scrat.zhuhaibus.module.bus.detail.BusDetailActivity;
 import com.scrat.zhuhaibus.module.bus.search.SearchActivity;
 import com.umeng.analytics.MobclickAgent;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +37,7 @@ import static android.app.Activity.RESULT_OK;
 public class BusListFragment extends BaseFragment implements BusListContract.View {
 
     private static final int REQUEST_CODE_SEARCH = 11;
+
     public static BusListFragment newInstance() {
         return new BusListFragment();
     }
@@ -128,6 +130,14 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
             dialog.dismiss();
         }
         super.onDestroyView();
+        reportBusLineHistoryCount();
+    }
+
+    private int totalHistory;
+    private void reportBusLineHistoryCount() {
+        Map<String, String> evt = new HashMap<>();
+        evt.put("historyCount", String.valueOf(totalHistory));
+        MobclickAgent.onEvent(getContext(), "BusHistoryCount", evt);
     }
 
     @Override
@@ -157,6 +167,8 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
     public void showHistoryEmpty() {
         adapter.clearData();
         binding.emptyHistoryView.setVisibility(View.VISIBLE);
+
+        totalHistory = 0;
     }
 
     @Override
@@ -164,6 +176,8 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
         binding.emptyHistoryView.setVisibility(View.GONE);
         adapter.setTimesColorMap(timesColorMap)
                 .replaceData(list);
+
+        totalHistory = list == null ? 0 : list.size();
     }
 
     private interface OnItemClickListener {

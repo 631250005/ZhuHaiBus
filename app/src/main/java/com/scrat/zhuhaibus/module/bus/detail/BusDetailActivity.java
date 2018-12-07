@@ -84,6 +84,15 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
         autoRefresh();
 
         initAd(footerBinding);
+
+        reportCurrBusLine(line.getName(), line.getToStation());
+    }
+
+    private void reportCurrBusLine(String busName, String target) {
+        Map<String, String> evt = new HashMap<>();
+        evt.put("busName", busName);
+        evt.put("target", target);
+        MobclickAgent.onEvent(this, "BusDetail", evt);
     }
 
     private void initAd(ItemFooterBusDetailBinding footerBinding) {

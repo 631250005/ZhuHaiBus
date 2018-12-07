@@ -20,6 +20,7 @@ import com.scrat.zhuhaibus.framework.view.SelectorPopupWindow;
 import com.scrat.zhuhaibus.module.feedback.FeedbackActivity;
 import com.umeng.analytics.MobclickAgent;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -91,6 +92,8 @@ public class PayActivity extends BaseActivity {
         if (!openSuccess) {
             showMessage(R.string.scan_pay_open_fail);
         }
+
+        reportShowingQrcode("alipay", openSuccess);
     }
 
     public void wechatBusCode(View view) {
@@ -98,6 +101,15 @@ public class PayActivity extends BaseActivity {
         if (!openSuccess) {
             showMessage(R.string.scan_pay_open_fail);
         }
+
+        reportShowingQrcode("wechat", openSuccess);
+    }
+
+    private void reportShowingQrcode(String channel, boolean openSuccess) {
+        Map<String, String> evt = new HashMap<>();
+        evt.put("type", channel);
+        evt.put("state", String.valueOf(openSuccess));
+        MobclickAgent.onEvent(this, "BusQrcodeOpenState", evt);
     }
 
     public void more(View view) {
