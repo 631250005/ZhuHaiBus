@@ -13,6 +13,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.scrat.zhuhaibus.App;
 import com.scrat.zhuhaibus.R;
+import com.scrat.zhuhaibus.data.EnvChecker;
 import com.scrat.zhuhaibus.data.modle.BusLine;
 import com.scrat.zhuhaibus.databinding.FragmentMainBinding;
 import com.scrat.zhuhaibus.framework.common.BaseFragment;
@@ -85,6 +86,9 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
     }
 
     private void initAd() {
+        if (!EnvChecker.canShowAd()) {
+            return;
+        }
         Context ctx = getApplicationContext();
         binding.list.post(() -> {
             try {

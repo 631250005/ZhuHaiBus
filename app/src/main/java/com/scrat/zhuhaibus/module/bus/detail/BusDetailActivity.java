@@ -14,6 +14,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.scrat.zhuhaibus.App;
 import com.scrat.zhuhaibus.R;
+import com.scrat.zhuhaibus.data.EnvChecker;
 import com.scrat.zhuhaibus.data.local.Preferences;
 import com.scrat.zhuhaibus.data.modle.BusLine;
 import com.scrat.zhuhaibus.data.modle.BusStation;
@@ -87,6 +88,9 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
     }
 
     private void initAd(ItemFooterBusDetailBinding footerBinding) {
+        if (!EnvChecker.canShowAd()) {
+            return;
+        }
         Context ctx = getApplicationContext();
         binding.list.post(() -> {
             try {

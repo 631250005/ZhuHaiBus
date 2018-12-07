@@ -3,6 +3,7 @@ package com.scrat.zhuhaibus.data;
 import android.content.Context;
 
 import com.scrat.zhuhaibus.data.local.Preferences;
+import com.scrat.zhuhaibus.framework.util.L;
 import com.scrat.zhuhaibus.framework.util.Utils;
 
 public class EnvChecker {
@@ -45,6 +46,18 @@ public class EnvChecker {
 
     public static boolean canShowAd() {
         long times = Preferences.getInstance().getOpenAppTimes();
-        return times > 30;
+        if (times < 20) { // 打开20次以上
+            L.d("打开应用少于20次");
+            return false;
+        }
+
+        long firstOpenAppTs = Preferences.getInstance().getFirstOpenAppTs();
+        long nowTs = System.currentTimeMillis();
+        if (nowTs - firstOpenAppTs < 259200000L) { // 安装应用3天
+            L.d("安装应用少于3天");
+            return false;
+        }
+
+        return true;
     }
 }

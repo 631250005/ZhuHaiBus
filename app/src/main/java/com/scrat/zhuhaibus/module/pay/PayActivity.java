@@ -13,6 +13,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.scrat.zhuhaibus.App;
 import com.scrat.zhuhaibus.R;
+import com.scrat.zhuhaibus.data.EnvChecker;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.util.L;
 
@@ -33,6 +34,9 @@ public class PayActivity extends BaseActivity {
     }
 
     private void initAd() {
+        if (!EnvChecker.canShowAd()) {
+            return;
+        }
         Context ctx = getApplicationContext();
         AdView adView = findViewById(R.id.ad_view);
         adView.post(() -> {
