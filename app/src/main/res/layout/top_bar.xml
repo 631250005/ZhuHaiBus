@@ -18,8 +18,19 @@
     <TextView
         android:id="@+id/title"
         style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:textColor="@color/white" />
+
+    <ImageButton
+        android:id="@+id/more"
+        android:layout_width="40dp"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@null"
+        android:contentDescription="@null"
+        android:onClick="more"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_switch_white_24dp" />
 
 </LinearLayout>

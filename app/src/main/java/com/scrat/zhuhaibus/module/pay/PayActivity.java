@@ -16,6 +16,11 @@ import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.data.EnvChecker;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.util.L;
+import com.scrat.zhuhaibus.framework.view.SelectorPopupWindow;
+import com.scrat.zhuhaibus.module.feedback.FeedbackActivity;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class PayActivity extends BaseActivity {
     public static void show(Context context) {
@@ -23,14 +28,26 @@ public class PayActivity extends BaseActivity {
         context.startActivity(i);
     }
 
+    private SelectorPopupWindow selector;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
         TextView title = findViewById(R.id.title);
         title.setText(getString(R.string.scan_pay));
+        findViewById(R.id.more).setVisibility(View.VISIBLE);
+        selector = new SelectorPopupWindow(this);
 
         initAd();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (selector != null && selector.isShowing()) {
+            selector.dismiss();
+        }
+        super.onDestroy();
     }
 
     private void initAd() {
@@ -67,6 +84,13 @@ public class PayActivity extends BaseActivity {
         if (!openSuccess) {
             showMessage(R.string.scan_pay_open_fail);
         }
+    }
+
+    public void more(View view) {
+        Map<String, View.OnClickListener> items = new LinkedHashMap<>();
+        items.put(getString(R.string.feedback), v -> FeedbackActivity.show(this));
+
+        selector.refreshItems(items).show(view);
     }
 
     public boolean openApp(String url) {
