@@ -93,11 +93,11 @@ android {
         gp {
             manifestPlaceholders = [CHANNEL_NAME: "gp", APP_NAME: "珠海公交"]
         }
-        oppo {
-            manifestPlaceholders = [CHANNEL_NAME: "oppo"]
+        oppo { // 原 晴天公交(珠海)
+            manifestPlaceholders = [CHANNEL_NAME: "oppo", APP_NAME: "珠海公交-实时"]
         }
         xiaomi {
-            manifestPlaceholders = [CHANNEL_NAME: "xiaomi", APP_NAME: "珠海晴天公交"]
+            manifestPlaceholders = [CHANNEL_NAME: "xiaomi", APP_NAME: "珠海公交"]
         }
         h5 {
             manifestPlaceholders = [CHANNEL_NAME: "h5", APP_NAME: "珠海公交"]
@@ -105,15 +105,21 @@ android {
         meizu {
             manifestPlaceholders = [CHANNEL_NAME: "meizu", APP_NAME: "珠海公交"]
         }
-//        _360 {
+        vivo {
+            manifestPlaceholders = [CHANNEL_NAME: "vivo", APP_NAME: "珠海公交-实时"]
+        }
+//        _360 { // 需要软件著作权材料
 //            manifestPlaceholders = [CHANNEL_NAME: "_360"]
 //        }
         baidu {
             manifestPlaceholders = [CHANNEL_NAME: "baidu", APP_NAME: "珠海公交"]
         }
-//        huawei {
+//        huawei { // 需要免责函，需要打印，公司盖章
 //            manifestPlaceholders = [CHANNEL_NAME: "huawei"]
 //        }
+        samsung {
+            manifestPlaceholders = [CHANNEL_NAME: "samsung", APP_NAME: "珠海公交"]
+        }
     }
 
     dataBinding {
