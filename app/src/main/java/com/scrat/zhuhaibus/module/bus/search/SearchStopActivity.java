@@ -108,6 +108,7 @@ public class SearchStopActivity extends BaseActivity implements SearchStopContra
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onEvent(this, "view", "SearchStopActivity");
         MobclickAgent.onPageStart("SearchStopActivity");
     }
 

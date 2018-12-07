@@ -15,6 +15,7 @@ import com.scrat.zhuhaibus.framework.view.IosDialog;
 import com.scrat.zhuhaibus.module.about.AboutActivity;
 import com.scrat.zhuhaibus.module.feedback.FeedbackActivity;
 import com.scrat.zhuhaibus.module.update.UpdateHelper;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by scrat on 2018/3/26.
@@ -63,6 +64,19 @@ public class SettingFragment extends BaseFragment implements SettingContract.Vie
         updateHelper.init(getContext());
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onEvent(getContext(), "view", "SettingFragment");
+        MobclickAgent.onPageStart("SettingFragment");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("SettingFragment");
     }
 
     @Override

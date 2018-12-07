@@ -47,6 +47,7 @@ public class FeedbackActivity extends BaseActivity implements FeedbackContract.V
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onEvent(this, "view", "FeedbackActivity");
         MobclickAgent.onPageStart("FeedbackActivity");
     }
 

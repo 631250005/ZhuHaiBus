@@ -28,7 +28,6 @@ public class RouteDetailActivity extends BaseActivity {
         ctx.startActivity(i);
     }
 
-    private ActivityRouteDetailBinding binding;
     private static int[] BG_LIST = new int[]{
             R.drawable.bg_meterial_blue,
             R.drawable.bg_meterial_yellow,
@@ -40,7 +39,7 @@ public class RouteDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_route_detail);
+        ActivityRouteDetailBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_route_detail);
         Transit transit = (Transit) getIntent().getSerializableExtra(DATA);
         List<Segment> segments = transit.getSegments();
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -83,6 +82,7 @@ public class RouteDetailActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onEvent(this, "view", "RouteDetailActivity");
         MobclickAgent.onPageStart("RouteDetailActivity");
     }
 

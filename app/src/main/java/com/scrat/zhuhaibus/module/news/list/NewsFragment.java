@@ -19,6 +19,7 @@ import com.scrat.zhuhaibus.framework.glide.GlideApp;
 import com.scrat.zhuhaibus.framework.glide.GlideRequests;
 import com.scrat.zhuhaibus.framework.util.L;
 import com.scrat.zhuhaibus.module.news.detail.NewsDetailActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -58,6 +59,19 @@ public class NewsFragment extends BaseFragment implements NewsContract.View {
         binding.title.setOnClickListener(v -> layoutManager.scrollToPosition(0));
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onEvent(getContext(), "view", "NewsFragment");
+        MobclickAgent.onPageStart("NewsFragment");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("NewsFragment");
     }
 
     @Override

@@ -35,6 +35,8 @@ public class AboutActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
+
+        MobclickAgent.onEvent(this, "view", "AboutActivity");
         MobclickAgent.onPageStart("AboutActivity");
     }
 
@@ -48,12 +50,11 @@ public class AboutActivity extends BaseActivity {
         try {
             Intent data = new Intent(Intent.ACTION_SENDTO);
             data.setData(Uri.parse("mailto:huzhenjie.dev@gmail.com"));
-            StringBuilder subject = new StringBuilder()
-                    .append('[').append(getString(R.string.app_name)).append(']')
-                    .append('[').append(Utils.getVersionName(this)).append(']')
-                    .append('[').append(Utils.getVersionCode(this)).append(']')
-                    .append('[').append(Utils.getChannelName(this)).append(']');
-            data.putExtra(Intent.EXTRA_SUBJECT, subject.toString());
+            String subject = "[" + getString(R.string.app_name) + ']' +
+                    '[' + Utils.getVersionName(this) + ']' +
+                    '[' + Utils.getVersionCode(this) + ']' +
+                    '[' + Utils.getChannelName(this) + ']';
+            data.putExtra(Intent.EXTRA_SUBJECT, subject);
             data.putExtra(Intent.EXTRA_TEXT, getString(R.string.feedback_hint));
             startActivity(data);
         } catch (Exception e) {

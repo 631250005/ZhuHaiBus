@@ -40,6 +40,7 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailContra
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onEvent(this, "view", "NewsDetailActivity");
         MobclickAgent.onPageStart("NewsDetailActivity");
     }
 

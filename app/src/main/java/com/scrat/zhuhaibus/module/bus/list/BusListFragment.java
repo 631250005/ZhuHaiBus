@@ -112,6 +112,7 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onEvent(getContext(), "view", "BusListFragment");
         MobclickAgent.onPageStart("BusListFragment");
     }
 

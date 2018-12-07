@@ -76,6 +76,7 @@ public class RouteFragment extends BaseFragment implements RouteContract.View {
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onEvent(getContext(), "view", "RouteFragment");
         MobclickAgent.onPageStart("RouteFragment");
     }
 

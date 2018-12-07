@@ -109,6 +109,8 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
         super.onResume();
         this.autoRefresh = Preferences.getInstance().isAutoRefresh();
         autoRefresh();
+
+        MobclickAgent.onEvent(this, "view", "BusDetailActivity");
         MobclickAgent.onPageStart("BusDetailActivity");
     }
 
@@ -116,6 +118,7 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
     public void onPause() {
         super.onPause();
         this.autoRefresh = false;
+
         MobclickAgent.onPageEnd("BusDetailActivity");
     }
 

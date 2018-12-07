@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onEvent(this, "view", "MainActivity");
         MobclickAgent.onPageStart("MainActivity");
     }
 

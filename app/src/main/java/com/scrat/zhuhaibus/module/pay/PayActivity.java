@@ -46,6 +46,7 @@ public class PayActivity extends BaseActivity {
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onEvent(this, "view", "PayActivity");
         MobclickAgent.onPageStart("PayActivity");
     }
 

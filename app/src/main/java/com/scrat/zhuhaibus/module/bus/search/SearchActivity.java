@@ -85,6 +85,7 @@ public class SearchActivity extends BaseActivity implements SearchContract.Searc
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onEvent(this, "view", "SearchActivity");
         MobclickAgent.onPageStart("SearchActivity");
     }
 
