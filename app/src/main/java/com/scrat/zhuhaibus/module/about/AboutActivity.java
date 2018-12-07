@@ -11,14 +11,13 @@ import android.view.View;
 import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.databinding.ActivityAboutBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
-import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.framework.util.Utils;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by scrat on 2018/3/26.
  */
 
-@ViewAnnotation(modelName = "about")
 public class AboutActivity extends BaseActivity {
     public static void show(Context context) {
         Intent i = new Intent(context, AboutActivity.class);
@@ -31,6 +30,18 @@ public class AboutActivity extends BaseActivity {
         ActivityAboutBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_about);
         String ver = Utils.getVersionName(this) + "-" + Utils.getChannelName(this);
         binding.ver.setText(ver);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("AboutActivity");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("AboutActivity");
     }
 
     public void sendEmail(View view) {

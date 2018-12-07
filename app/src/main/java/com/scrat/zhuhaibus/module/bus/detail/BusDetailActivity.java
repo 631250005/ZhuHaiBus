@@ -25,11 +25,11 @@ import com.scrat.zhuhaibus.databinding.ItemHeaderBusDetailBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewAdapter;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewHolder;
-import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.framework.util.L;
 import com.scrat.zhuhaibus.framework.view.SelectorPopupWindow;
 import com.scrat.zhuhaibus.module.feedback.FeedbackActivity;
 import com.scrat.zhuhaibus.module.pay.PayActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -39,7 +39,6 @@ import java.util.Map;
 /**
  * Created by scrat on 2018/3/25.
  */
-@ViewAnnotation(modelName = "bus_detail")
 public class BusDetailActivity extends BaseActivity implements BusDetailContract.BusDetailView {
     private static final String DATA = "data";
 
@@ -110,12 +109,14 @@ public class BusDetailActivity extends BaseActivity implements BusDetailContract
         super.onResume();
         this.autoRefresh = Preferences.getInstance().isAutoRefresh();
         autoRefresh();
+        MobclickAgent.onPageStart("BusDetailActivity");
     }
 
     @Override
     public void onPause() {
         super.onPause();
         this.autoRefresh = false;
+        MobclickAgent.onPageEnd("BusDetailActivity");
     }
 
     @Override

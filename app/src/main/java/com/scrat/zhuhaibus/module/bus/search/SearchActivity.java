@@ -13,13 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.scrat.zhuhaibus.R;
+import com.scrat.zhuhaibus.data.modle.BusLine;
 import com.scrat.zhuhaibus.databinding.ActivitySearchBusBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.common.BaseOnItemClickListener;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewAdapter;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewHolder;
-import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
-import com.scrat.zhuhaibus.data.modle.BusLine;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -27,7 +27,6 @@ import java.util.List;
  * Created by scrat on 2018/3/25.
  */
 
-@ViewAnnotation(modelName = "search")
 public class SearchActivity extends BaseActivity implements SearchContract.SearchView {
     private static final String DATA = "data";
     private ActivitySearchBusBinding binding;
@@ -81,6 +80,18 @@ public class SearchActivity extends BaseActivity implements SearchContract.Searc
 
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("SearchActivity");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("SearchActivity");
     }
 
     public static BusLine parseData(Intent i) {

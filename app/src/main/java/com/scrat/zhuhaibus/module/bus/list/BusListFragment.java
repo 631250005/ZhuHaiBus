@@ -19,11 +19,11 @@ import com.scrat.zhuhaibus.databinding.FragmentMainBinding;
 import com.scrat.zhuhaibus.framework.common.BaseFragment;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewAdapter;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewHolder;
-import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.framework.util.L;
 import com.scrat.zhuhaibus.framework.view.IosDialog;
 import com.scrat.zhuhaibus.module.bus.detail.BusDetailActivity;
 import com.scrat.zhuhaibus.module.bus.search.SearchActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 import java.util.Map;
@@ -33,7 +33,6 @@ import static android.app.Activity.RESULT_OK;
 /**
  * Created by scrat on 2018/3/24.
  */
-@ViewAnnotation(modelName = "busList")
 public class BusListFragment extends BaseFragment implements BusListContract.View {
 
     private static final int REQUEST_CODE_SEARCH = 11;
@@ -108,6 +107,18 @@ public class BusListFragment extends BaseFragment implements BusListContract.Vie
             return;
         }
         presenter.loadHistory();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("BusListFragment");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("BusListFragment");
     }
 
     @Override

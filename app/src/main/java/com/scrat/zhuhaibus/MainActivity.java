@@ -8,13 +8,12 @@ import android.support.v4.app.Fragment;
 
 import com.scrat.zhuhaibus.databinding.ActivityMainBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
-import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.module.bus.list.BusListFragment;
 import com.scrat.zhuhaibus.module.route.RouteFragment;
 import com.scrat.zhuhaibus.module.setting.SettingFragment;
 import com.scrat.zhuhaibus.module.update.UpdateHelper;
+import com.umeng.analytics.MobclickAgent;
 
-@ViewAnnotation(modelName = "main")
 public class MainActivity extends BaseActivity {
 
     public static void show(Context ctx) {
@@ -58,6 +57,18 @@ public class MainActivity extends BaseActivity {
         updateHelper = new UpdateHelper();
         updateHelper.init(this)
                 .checkUpdate(this, false, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("MainActivity");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("MainActivity");
     }
 
     @Override

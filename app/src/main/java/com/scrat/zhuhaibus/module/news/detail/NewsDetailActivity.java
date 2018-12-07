@@ -10,11 +10,10 @@ import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.data.modle.News;
 import com.scrat.zhuhaibus.databinding.ActivityNewsDetailBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
-import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.framework.glide.GlideApp;
 import com.scrat.zhuhaibus.framework.glide.GlideRequests;
+import com.umeng.analytics.MobclickAgent;
 
-@ViewAnnotation(modelName = "news_detail")
 public class NewsDetailActivity extends BaseActivity implements NewsDetailContract.View {
     private static final String ID = "id";
     public static void show(Context ctx, String newsId) {
@@ -36,6 +35,18 @@ public class NewsDetailActivity extends BaseActivity implements NewsDetailContra
         new NewsDetailPresenter(this, newsId);
         presenter.loadData();
         binding.title.setOnClickListener(v -> binding.scrollView.scrollTo(0, 0));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("NewsDetailActivity");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("NewsDetailActivity");
     }
 
     @Override

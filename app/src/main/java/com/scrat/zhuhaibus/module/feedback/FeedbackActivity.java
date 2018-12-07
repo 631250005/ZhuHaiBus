@@ -10,10 +10,9 @@ import android.view.View;
 import com.scrat.zhuhaibus.R;
 import com.scrat.zhuhaibus.databinding.ActivityFeedbackBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
-import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.framework.view.IosDialog;
+import com.umeng.analytics.MobclickAgent;
 
-@ViewAnnotation(modelName = "feedback")
 public class FeedbackActivity extends BaseActivity implements FeedbackContract.View {
     public static void show(Context ctx) {
         Intent i = new Intent(ctx, FeedbackActivity.class);
@@ -43,6 +42,18 @@ public class FeedbackActivity extends BaseActivity implements FeedbackContract.V
             dialog.dismiss();
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("FeedbackActivity");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("FeedbackActivity");
     }
 
     @Override

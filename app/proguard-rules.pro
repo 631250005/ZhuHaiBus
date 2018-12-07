@@ -55,5 +55,4 @@
 
 # Default
 -keep class com.scrat.zhuhaibus.data.modle.**{*;}
--keep class com.scrat.zhuhaibus.framework.common.ViewAnnotation
 -keep class android.support.v7.app.AppCompatViewInflater

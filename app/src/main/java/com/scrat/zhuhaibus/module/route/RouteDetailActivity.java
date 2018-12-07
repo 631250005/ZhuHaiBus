@@ -15,6 +15,7 @@ import com.scrat.zhuhaibus.databinding.ActivityRouteDetailBinding;
 import com.scrat.zhuhaibus.databinding.ItemListRouteBusItemBinding;
 import com.scrat.zhuhaibus.databinding.ItemListRouteWalkItemBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -77,5 +78,17 @@ public class RouteDetailActivity extends BaseActivity {
         ItemListRouteWalkItemBinding arrivalBinding = ItemListRouteWalkItemBinding.inflate(inflater, binding.list, false);
         arrivalBinding.distance.setText(R.string.arrivals);
         binding.list.addView(arrivalBinding.getRoot());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("RouteDetailActivity");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("RouteDetailActivity");
     }
 }

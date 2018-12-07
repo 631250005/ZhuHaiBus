@@ -18,12 +18,11 @@ import com.scrat.zhuhaibus.databinding.ActivitySearchStopBinding;
 import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewAdapter;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewHolder;
-import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.framework.util.AbsMap;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
-@ViewAnnotation(modelName = "SearchStopActivity")
 public class SearchStopActivity extends BaseActivity implements SearchStopContract.View {
     private static final String NAME = "name";
     private static final String LOCATION = "location";
@@ -104,6 +103,18 @@ public class SearchStopActivity extends BaseActivity implements SearchStopContra
             }
             return false;
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("SearchStopActivity");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("SearchStopActivity");
     }
 
     private void search(String content) {

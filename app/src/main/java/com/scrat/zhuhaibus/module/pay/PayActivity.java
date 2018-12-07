@@ -18,6 +18,7 @@ import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.util.L;
 import com.scrat.zhuhaibus.framework.view.SelectorPopupWindow;
 import com.scrat.zhuhaibus.module.feedback.FeedbackActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -40,6 +41,18 @@ public class PayActivity extends BaseActivity {
         selector = new SelectorPopupWindow(this);
 
         initAd();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("PayActivity");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("PayActivity");
     }
 
     @Override

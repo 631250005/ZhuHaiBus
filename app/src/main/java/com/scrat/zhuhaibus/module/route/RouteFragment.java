@@ -20,9 +20,9 @@ import com.scrat.zhuhaibus.databinding.ItemListRouteBusBinding;
 import com.scrat.zhuhaibus.framework.common.BaseFragment;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewAdapter;
 import com.scrat.zhuhaibus.framework.common.BaseRecyclerViewHolder;
-import com.scrat.zhuhaibus.framework.common.ViewAnnotation;
 import com.scrat.zhuhaibus.framework.util.Utils;
 import com.scrat.zhuhaibus.module.bus.search.SearchStopActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import org.apmem.tools.layouts.FlowLayout;
 
@@ -30,7 +30,6 @@ import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
-@ViewAnnotation(modelName = "RouteFragment")
 public class RouteFragment extends BaseFragment implements RouteContract.View {
 
     private static final int REQUEST_CODE_EDIT_START = 20;
@@ -72,6 +71,18 @@ public class RouteFragment extends BaseFragment implements RouteContract.View {
         });
         new RoutePresenter(this);
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("RouteFragment");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("RouteFragment");
     }
 
     @Override
