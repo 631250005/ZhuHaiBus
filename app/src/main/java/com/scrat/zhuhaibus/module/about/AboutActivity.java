@@ -14,6 +14,9 @@ import com.scrat.zhuhaibus.framework.common.BaseActivity;
 import com.scrat.zhuhaibus.framework.util.Utils;
 import com.umeng.analytics.MobclickAgent;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by scrat on 2018/3/26.
  */
@@ -61,4 +64,22 @@ public class AboutActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
+
+    public void donate(View view) {
+        boolean openSuccess = Utils.openOnSysBrowser(this, "https://qr.alipay.com/tsx05817omf8rmusuew8k0f");
+        if (!openSuccess) {
+            // 虽然失败了，还不能谢谢人家吗？？？
+            showMessage(R.string.thank_you_for_donate);
+        }
+
+        reportShowingDonate("alipay", openSuccess);
+    }
+
+    private void reportShowingDonate(String channel, boolean openSuccess) {
+        Map<String, String> evt = new HashMap<>();
+        evt.put("type", channel);
+        evt.put("state", String.valueOf(openSuccess));
+        MobclickAgent.onEvent(this, "Donate", evt);
+    }
+
 }

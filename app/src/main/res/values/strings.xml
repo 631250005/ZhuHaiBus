@@ -30,6 +30,8 @@
     <string name="kilometers">公里</string>
     <string name="meter">米</string>
     <string name="walking">步行</string>
+    <string name="donate">支持我们</string>
+    <string name="thank_you_for_donate">感谢您的支持</string>
 
     <string name="execute_success">操作成功</string>
     <string name="feedback_success">反馈成功</string>

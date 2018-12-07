@@ -299,7 +299,7 @@ public class Utils {
         }
     }
 
-    public static void openOnSysBrowser(Activity activity, String url) {
+    public static boolean openOnSysBrowser(Activity activity, String url) {
         try {
             Uri uri = Uri.parse(url);
             CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
@@ -308,6 +308,7 @@ public class Utils {
             intentBuilder.setShowTitle(true);
             CustomTabsIntent customTabsIntent = intentBuilder.build();
             customTabsIntent.launchUrl(activity, uri);
+            return true;
         } catch (Exception e) {
             L.e(e);
             try {
@@ -316,8 +317,10 @@ public class Utils {
                 Uri uri = Uri.parse(url);
                 intent.setData(uri);
                 activity.startActivity(intent);
+                return true;
             } catch (Exception e2) {
                 L.e(e2);
+                return false;
             }
         }
     }
