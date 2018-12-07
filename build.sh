@@ -12,3 +12,5 @@ for ch_name in $ch_names; do
 done
 
 echo '陛下，我们跑完了'
+
+# ~/Library/Android/sdk/tools/proguard/bin/retrace.sh -verbose mapping.txt trace.txt

@@ -87,16 +87,24 @@ public class RouteFragment extends BaseFragment implements RouteContract.View {
             case REQUEST_CODE_EDIT_START:
                 name = SearchStopActivity.parseName(data);
                 location = SearchStopActivity.parseLocation(data);
-                presenter.setStart(name, location);
+                getPresenter().setStart(name, location);
                 break;
             case REQUEST_CODE_EDIT_END:
                 name = SearchStopActivity.parseName(data);
                 location = SearchStopActivity.parseLocation(data);
-                presenter.setEnd(name, location);
+                getPresenter().setEnd(name, location);
                 break;
             default:
                 break;
         }
+    }
+
+    public RouteContract.Presenter getPresenter() {
+        // attempt to fix crash
+        if (presenter == null) {
+            new RoutePresenter(this);
+        }
+        return presenter;
     }
 
     @Override
