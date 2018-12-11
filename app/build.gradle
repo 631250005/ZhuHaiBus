@@ -102,9 +102,9 @@ android {
         h5 {
             manifestPlaceholders = [CHANNEL_NAME: "h5", APP_NAME: "珠海公交"]
         }
-        meizu {
-            manifestPlaceholders = [CHANNEL_NAME: "meizu", APP_NAME: "珠海公交"]
-        }
+//        meizu { // 不支持个人开发者
+//            manifestPlaceholders = [CHANNEL_NAME: "meizu", APP_NAME: "珠海公交"]
+//        }
         vivo {
             manifestPlaceholders = [CHANNEL_NAME: "vivo", APP_NAME: "珠海公交-实时"]
         }
